@@ -23,6 +23,15 @@
 <main>
   <svg viewBox="0 0 600 600" role="img" aria-label="Analog clock">
     <defs>
+      <filter id="hand-shadow" filterUnits="userSpaceOnUse" x="65" y="65" width="470" height="470" color-interpolation-filters="sRGB">
+        <feDropShadow dx="1.5" dy="3" stdDeviation="2" flood-color="#141720" flood-opacity=".32"/>
+      </filter>
+      <filter id="second-shadow" filterUnits="userSpaceOnUse" x="65" y="65" width="470" height="470" color-interpolation-filters="sRGB">
+        <feDropShadow dx="2" dy="4" stdDeviation="1.8" flood-color="#141720" flood-opacity=".24"/>
+      </filter>
+      <filter id="cap-shadow" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
+        <feDropShadow dx=".8" dy="1.5" stdDeviation="1" flood-color="#101310" flood-opacity=".4"/>
+      </filter>
       <linearGradient id="red" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#ff343c"/><stop offset=".3" stop-color="#d7202c"/><stop offset=".68" stop-color="#b51022"/><stop offset="1" stop-color="#e52635"/></linearGradient>
       <radialGradient id="dial"><stop stop-color="#ffffff"/><stop offset=".8" stop-color="#ffffff"/><stop offset="1" stop-color="#ffffff"/></radialGradient>
       <linearGradient id="lume" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
@@ -38,6 +47,7 @@
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
     <image id="tag-heuer-logo" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" aria-label="TAG Heuer"/>
     <g id="formula" fill="none" stroke="#252d27" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-label="Formula 1"></g>
+    <g filter="url(#hand-shadow)">
     <g id="hour" class="hand">
       <path d="M293 321 L293 205 L300 176 L307 205 L307 321 L300 328 Z" fill="#252d28" stroke="#111914" stroke-width="1.5"/>
       <path d="M296 264 V210 H304 V264 Z" fill="url(#lume)"/>
@@ -45,16 +55,21 @@
       <circle cx="300" cy="300" r="18" transform="translate(0 -87)" fill="url(#lume)" stroke="#28312c" stroke-width="3"/>
       <path d="M300 195 V213 L284.5 222 M300 213 L315.5 222" fill="none" stroke="#28312c" stroke-width="2.5"/>
     </g>
+    </g>
+    <g filter="url(#hand-shadow)">
     <g id="minute" class="hand">
       <path d="M293 327 V109 L300 99 L307 109 V327 L300 332 Z" fill="#252d28" stroke="#111914" stroke-width="1.5"/>
       <path d="M295 110 L300 104 L305 110 V228 H295 Z" fill="url(#lume)"/>
     </g>
+    </g>
+    <g filter="url(#second-shadow)">
     <g id="second" class="hand">
       <!-- The long blade starts at 40% of the cap diameter; the counterweight starts at 75%. -->
       <path d="M300 96 L301.44 108 L303.2 300 H296.8 L298.56 108 Z" fill="#ce2634" stroke="#b81827" stroke-width=".5" stroke-linejoin="round"/>
       <path d="M294 300 H306 L305.25 340 L300 348 L294.75 340 Z" fill="#ce2634" stroke="#b81827" stroke-width=".5" stroke-linejoin="round"/>
     </g>
-    <circle cx="300" cy="300" r="8" fill="#171b17" stroke="#888888" stroke-width="1.5"/>
+    </g>
+    <circle cx="300" cy="300" r="8" fill="#171b17" stroke="#888888" stroke-width="1.5" filter="url(#cap-shadow)"/>
   </svg>
   <div class="controls" aria-label="Time simulation speed">
     <button data-speed="1" aria-pressed="true">1×</button>
