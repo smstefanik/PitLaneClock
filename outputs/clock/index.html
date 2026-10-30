@@ -32,7 +32,7 @@
     <g id="bezel"></g>
     <circle cx="300" cy="300" r="237.9" fill="url(#dial)"/>
     <circle cx="300" cy="300" r="207" fill="#242b25"/>
-    <circle cx="300" cy="300" r="190" fill="url(#lume)"/>
+    <circle cx="300" cy="300" r="186.6" fill="url(#lume)"/>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
@@ -50,10 +50,11 @@
       <path d="M295 110 L300 104 L305 110 V228 H295 Z" fill="url(#lume)"/>
     </g>
     <g id="second" class="hand">
-      <path d="M298.6 108 L300 96 L301.4 108 V342 L300 348 L296 341 L296 318 H293 V294 H298.6 Z" fill="#ce2634" stroke="#b81827" stroke-width=".5"/>
+      <!-- The long blade starts at 40% of the cap diameter; the counterweight starts at 75%. -->
+      <path d="M300 96 L301.44 108 L303.2 300 H296.8 L298.56 108 Z" fill="#ce2634" stroke="#b81827" stroke-width=".5" stroke-linejoin="round"/>
+      <path d="M294 300 H306 L305.25 340 L300 348 L294.75 340 Z" fill="#ce2634" stroke="#b81827" stroke-width=".5" stroke-linejoin="round"/>
     </g>
-    <circle cx="300" cy="300" r="8" fill="#bd2430" stroke="#3b2822" stroke-width="1.5"/>
-    <circle cx="298" cy="298" r="2" fill="#f4847a"/>
+    <circle cx="300" cy="300" r="8" fill="#171b17" stroke="#888888" stroke-width="1.5"/>
   </svg>
   <div class="controls" aria-label="Time simulation speed">
     <button data-speed="1" aria-pressed="true">1×</button>
@@ -101,8 +102,8 @@
     var quarterDistance = Math.min(i % 15, 15 - i % 15);
     if (quarterDistance > 1) {
       element(marks, i % 5 === 0 ? 'rect' : 'circle', i % 5 === 0 ?
-        {x:297,y:96,width:6,height:13,fill:'url(#lume)',transform:rotation} :
-        {cx:300,cy:101,r:4.5,fill:'url(#lume)',transform:rotation});
+        {x:296.4,y:95.4,width:7.2,height:15.6,fill:'url(#lume)',transform:rotation} :
+        {cx:300,cy:103.2,r:5.4,fill:'url(#lume)',transform:rotation});
     }
     if (i % 5 !== 0) element(bezel,'circle',{cx:300,cy:55.1,r:3.2,fill:'#ffffff',transform:rotation});
   }
@@ -117,7 +118,7 @@
       element(indices,'path',{d:'M279 115 H321',fill:'none','vector-effect':'non-scaling-stroke',transform:quarterTransform});
     } else {
       var rad = h * Math.PI / 6;
-      element(indices,'circle',{cx:300 + Math.sin(rad)*169,cy:300-Math.cos(rad)*169,r:16});
+      element(indices,'circle',{cx:300 + Math.sin(rad)*164,cy:300-Math.cos(rad)*164,r:16});
     }
   }
   // Custom outline lettering keeps the face independent of system fonts.
