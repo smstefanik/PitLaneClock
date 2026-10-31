@@ -1,5 +1,5 @@
 from pathlib import Path
-p=Path('outputs/clock/index.html')
+p=Path('index.html')
 s=p.read_text()
 a=s.index('    <circle cx="300"'); b=s.index('  </svg>',a)
 s=s[:a]+'''    <defs>

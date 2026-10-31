@@ -1,5 +1,5 @@
 from pathlib import Path
-p=Path('outputs/clock/index.html');s=p.read_text()
+p=Path('index.html');s=p.read_text()
 a=s.index('  var bezelType =');b=s.index("    element(group,'rect'",a)
 new="""  // Filled bezel glyphs share the proportions and six-unit bars of the traced 30.
   var bezelGlyphs = {
