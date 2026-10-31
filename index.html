@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pit Lane Clock — Prototype</title>
+  <title>Pit Lane Clock</title>
   <style>
     @font-face { font-family: Formula1; src: url("assets/fonts/Formula1-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
     @font-face { font-family: Formula1; src: url("assets/fonts/Formula1-Bold.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
@@ -33,7 +33,10 @@
     .session-date { border-right: 1px solid #34343b; font-size: 23px; font-weight: 900; line-height: 1.05; }
     .session-date span { display: block; margin-top: 7px; color: #aaa; font: 17px ui-monospace, monospace; }
     .session h3 { font-family: Formula1, sans-serif; margin: 0 0 7px; font-size: clamp(20px, 2vw, 27px); font-weight: 500; text-transform: uppercase; letter-spacing: 0; }
-    .session-time { color: #eee; font: 18px ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .session-time { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: #eee; font: 18px ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .session-live { display: inline-flex; align-items: center; gap: 5px; padding: 4px 6px; border-radius: 4px; background: #ed241c; color: #fff; font: 700 10px -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: .8px; }
+    .session-live::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .session-live[hidden] { display: none; }
     .session.finished .session-time { color: #888; }
     .session > div:last-child { position: relative; padding-left: 32px; }
     .session.finished h3::before { content: ""; position: absolute; left: 0; top: 2px; width: 20px; height: 24px; background: url("assets/checkered-flag.svg") center / contain no-repeat; }
@@ -136,6 +139,7 @@
     <button id="pause" aria-pressed="false">Pause</button>
     <button id="boundary">11:59:55</button>
     <button id="three-boundary">2:59:55</button>
+    <button id="test-live">Test live session</button>
     <button id="reset">Reset to now</button>
     <button id="fullscreen">Full screen</button>
   </div>
@@ -161,6 +165,18 @@
   var selectedZone = 'local';
   var trackFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
   var localFormatter = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  var trackDateFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Mexico_City', month: 'short', day: '2-digit' });
+  var localDateFormatter = new Intl.DateTimeFormat('en-GB', { month: 'short', day: '2-digit' });
+  var sessions = Array.from(document.querySelectorAll('.session')).map(function (session) {
+    var time = session.querySelector('.session-time');
+    var range = document.createElement('span');
+    var badge = document.createElement('span');
+    badge.className = 'session-live';
+    badge.textContent = 'LIVE';
+    badge.hidden = true;
+    time.append(range, badge);
+    return { element: session, start: new Date(session.dataset.start), end: new Date(session.dataset.end), range: range, badge: badge };
+  });
   var localTime = document.getElementById('local-time');
   var trackTime = document.getElementById('track-time');
   document.querySelectorAll('[data-zone]').forEach(function (button) {
@@ -301,6 +317,12 @@
     var date = new Date(); date.setHours(2, 59, 55, 0);
     baseTime = date.getTime(); baseTick = performance.now(); live = false; updateControls();
   };
+  document.getElementById('test-live').onclick = function () {
+    var now = Date.now();
+    var session = sessions.find(function (item) { return now < item.end; }) || sessions[0];
+    baseTime = session.start.getTime() + (session.end - session.start) / 2;
+    baseTick = performance.now(); speed = 1; paused = false; live = false; updateControls();
+  };
   document.getElementById('reset').onclick = function () {
     baseTime = Date.now(); baseTick = performance.now(); speed = 1; paused = false; live = true; updateControls();
   };
@@ -340,12 +362,18 @@
     });
     if (transitionProgress === 1) zoneTransition = null;
     if (tick - lastStatus > 100) {
-      document.querySelectorAll('.session').forEach(function (session) {
-        var start = new Date(session.dataset.start), end = new Date(session.dataset.end);
-        var finished = date >= end;
-        session.classList.toggle('finished', finished);
+      sessions.forEach(function (session) {
+        var finished = date >= session.end;
+        session.element.classList.toggle('finished', finished);
+        session.badge.hidden = !(date >= session.start && date < session.end);
         var formatter = selectedZone === 'track' ? trackFormatter : localFormatter;
-        session.querySelector('.session-time').textContent = finished ? 'FINISHED' : formatter.format(start).slice(0, 5) + ' – ' + formatter.format(end).slice(0, 5);
+        session.range.textContent = finished ? 'FINISHED' : formatter.format(session.start).slice(0, 5) + ' – ' + formatter.format(session.end).slice(0, 5);
+        var dateFormatter = selectedZone === 'track' ? trackDateFormatter : localDateFormatter;
+        var dateParts = {};
+        dateFormatter.formatToParts(session.start).forEach(function (part) { dateParts[part.type] = part.value; });
+        var sessionDate = session.element.querySelector('.session-date');
+        sessionDate.firstChild.nodeValue = dateParts.month.toUpperCase();
+        sessionDate.querySelector('span').textContent = dateParts.day;
       });
       localTime.textContent = localFormatter.format(date);
       trackTime.textContent = trackParts.hour + ':' + trackParts.minute;
