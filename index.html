@@ -43,6 +43,9 @@
     @media (max-width: 900px) { main { padding: 30px 24px; gap: 30px; } .clock-layout { grid-template-columns: minmax(216px, 272px) minmax(0, 1fr); gap: 28px; } .session { gap: 14px; padding: 18px 0; } }
     @media (max-width: 650px) { main { padding: 28px 20px; } .race-header { gap: 18px; } .formula-1-logo { width: 80px; } .race-title { align-items: flex-start; gap: 12px; } .clock-layout { display: flex; flex-direction: column-reverse; gap: 32px; } .clock-layout > svg { width: min(85vw, 480px); } .schedule { max-width: 384px; } }
     .hand { transform-origin: 300px 300px; }
+    .awake-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; }
+    #awake-status { color: #999; font-size: 13px; }
+    button:disabled { opacity: .5; cursor: default; }
     .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 680px; }
     .debug-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .debug-panel[hidden] { display: none; }
@@ -143,12 +146,68 @@
     <button id="reset">Reset to now</button>
     <button id="fullscreen">Full screen</button>
   </div>
+  <div class="awake-controls">
+    <button id="keep-awake" aria-pressed="true" aria-describedby="awake-status">Keep awake</button>
+    <span id="awake-status" role="status">Enabling…</span>
+  </div>
   <output id="status" aria-live="off"></output>
   <p class="hint">Time controls are for animation testing · 600× = ten clock minutes per second</p>
   </div>
 </main>
 <script>
   'use strict';
+  var awakeButton = document.getElementById('keep-awake');
+  var awakeStatus = document.getElementById('awake-status');
+  var wakeLockSupported = window.isSecureContext && 'wakeLock' in navigator;
+  var wakeLock = null, keepAwake = wakeLockSupported, wakeLockPending = false;
+  function updateAwakeControls(message) {
+    awakeButton.disabled = !wakeLockSupported || wakeLockPending;
+    awakeButton.setAttribute('aria-pressed', String(keepAwake));
+    awakeStatus.textContent = message || (!wakeLockSupported ? 'Keep awake is unavailable in this browser or connection.' :
+      wakeLockPending ? 'Enabling…' : !keepAwake ? 'Off' :
+      wakeLock && !wakeLock.released ? 'Screen will stay awake' : 'Paused — resumes when you return to this page');
+  }
+  async function requestWakeLock() {
+    if (!wakeLockSupported || !keepAwake || wakeLockPending || document.visibilityState !== 'visible' || (wakeLock && !wakeLock.released)) return;
+    wakeLockPending = true;
+    updateAwakeControls();
+    try {
+      var lock = await navigator.wakeLock.request('screen');
+      wakeLock = lock;
+      lock.addEventListener('release', function () {
+        if (wakeLock !== lock) return;
+        wakeLock = null;
+        updateAwakeControls(keepAwake && document.visibilityState === 'visible' ? 'Keep awake was interrupted. Turn it off and on to retry.' : undefined);
+      });
+      if (!keepAwake) await lock.release();
+    } catch (error) {
+      keepAwake = false;
+      wakeLockPending = false;
+      updateAwakeControls('Could not keep the screen awake. Try again.');
+      return;
+    } finally {
+      wakeLockPending = false;
+    }
+    updateAwakeControls();
+  }
+  awakeButton.addEventListener('click', async function () {
+    keepAwake = !keepAwake;
+    if (keepAwake) {
+      await requestWakeLock();
+    } else {
+      var lock = wakeLock;
+      wakeLock = null;
+      updateAwakeControls();
+      if (lock) {
+        try { await lock.release(); } catch (error) { /* The browser may already have released it. */ }
+      }
+    }
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') requestWakeLock();
+  });
+  updateAwakeControls();
+  requestWakeLock();
   var logo = document.getElementById('tag-heuer-logo');
   var debugPanel = document.getElementById('debug-panel');
   function toggleDebugControls() {
