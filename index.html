@@ -9,13 +9,14 @@
     @font-face { font-family: Formula1; src: url("assets/fonts/Formula1-Bold.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
     * { box-sizing: border-box; }
     body { margin: 0; background: #000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-    main { min-height: 100vh; max-width: 1600px; margin: auto; display: flex; flex-direction: column; justify-content: center; padding: 40px 48px; gap: 42px; }
+    main { min-height: 100vh; min-height: 100dvh; margin: auto; display: flex; flex-direction: column; justify-content: center; padding: 40px 48px; gap: 42px; }
     .race-header { display: flex; flex-direction: column; align-items: center; gap: 22px; }
     .formula-1-logo { display: block; width: 96px; height: auto; }
     .race-title { display: flex; align-items: center; justify-content: center; gap: 20px; }
     h1 { margin: 0; font-family: Formula1, sans-serif; font-size: clamp(20px, 2.55vw, 40px); font-weight: 400; line-height: 1.35; letter-spacing: 0; text-transform: uppercase; }
     .mexican-flag { width: clamp(36px, 3.5vw, 52px); height: auto; flex-shrink: 0; display: block; }
-    .clock-layout { display: grid; grid-template-columns: minmax(248px, 336px) minmax(0, 760px); align-items: center; justify-content: center; gap: clamp(40px, 6vw, 100px); }
+    /* Grow with the viewport, reserving space for the header, gap, and page padding. */
+    .clock-layout { display: grid; grid-template-columns: minmax(248px, 336px) minmax(0, max(480px, calc(100dvh - 222px))); align-items: center; justify-content: center; gap: clamp(80px, 12vw, 200px); }
     .clock-layout > svg { width: 100%; height: auto; overflow: visible; }
     .schedule { width: 100%; }
     .time-selector { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 5px; background: #111113; border: 1px solid #252528; border-radius: 9px; }
@@ -40,8 +41,8 @@
     .session.finished .session-time { color: #888; }
     .session > div:last-child { position: relative; padding-left: 32px; }
     .session.finished h3::before { content: ""; position: absolute; left: 0; top: 2px; width: 20px; height: 24px; background: url("assets/checkered-flag.svg") center / contain no-repeat; }
-    @media (max-width: 900px) { main { padding: 30px 24px; gap: 30px; } .clock-layout { grid-template-columns: minmax(216px, 272px) minmax(0, 1fr); gap: 28px; } .session { gap: 14px; padding: 18px 0; } }
-    @media (max-width: 650px) { main { padding: 28px 20px; } .race-header { gap: 18px; } .formula-1-logo { width: 80px; } .race-title { align-items: flex-start; gap: 12px; } .clock-layout { display: flex; flex-direction: column-reverse; gap: 32px; } .clock-layout > svg { width: min(85vw, 480px); } .schedule { max-width: 384px; } }
+    @media (max-width: 900px) { main { padding: 30px 24px; gap: 30px; } .clock-layout { grid-template-columns: minmax(216px, 272px) minmax(0, 1fr); gap: 56px; } .session { gap: 14px; padding: 18px 0; } }
+    @media (max-width: 650px) { main { padding: 28px 20px; } .race-header { gap: 18px; } .formula-1-logo { width: 80px; } .race-title { align-items: flex-start; gap: 12px; } .clock-layout { display: flex; flex-direction: column-reverse; gap: 64px; } .clock-layout > svg { width: min(85vw, 480px); } .schedule { max-width: 384px; } }
     .hand { transform-origin: 300px 300px; }
     .awake-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; }
     #awake-status { color: #999; font-size: 13px; }
