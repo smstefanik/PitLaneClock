@@ -2,6 +2,7 @@ TAG Heuer shield logo: tag-heuer-logo.svg
 Source: https://commons.wikimedia.org/wiki/File:TAG_Heuer_logo.svg
 Author: TAG Heuer. Vector extracted from Football Federation Australia 2018 Annual Review.
 Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with the owner.
+`tag-heuer-logo-dark.svg` is a local Heritage lume color variant of the same shield, preserving the original geometry with dark green and oxblood panels and mint lettering.
 
 ## Race heading
 - `assets/fonts/Michroma-Regular.ttf`: Michroma by Vernon Adams, from https://github.com/google/fonts/tree/main/ofl/michroma. SIL Open Font License included alongside the font.
