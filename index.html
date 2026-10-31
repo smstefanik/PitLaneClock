@@ -10,7 +10,9 @@
     * { box-sizing: border-box; }
     body { margin: 0; background: #000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
     main { min-height: 100vh; max-width: 1600px; margin: auto; display: flex; flex-direction: column; justify-content: center; padding: 40px 48px; gap: 42px; }
-    .race-header { display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .race-header { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    .formula-1-logo { display: block; width: 96px; height: auto; }
+    .race-title { display: flex; align-items: center; justify-content: center; gap: 20px; }
     h1 { margin: 0; font-family: Formula1, sans-serif; font-size: clamp(20px, 2.55vw, 40px); font-weight: 400; line-height: 1.35; letter-spacing: 0; text-transform: uppercase; }
     .mexican-flag { width: clamp(36px, 3.5vw, 52px); height: auto; flex-shrink: 0; display: block; }
     .clock-layout { display: grid; grid-template-columns: minmax(248px, 336px) minmax(0, 760px); align-items: center; justify-content: center; gap: clamp(40px, 6vw, 100px); }
@@ -36,7 +38,7 @@
     .session > div:last-child { position: relative; padding-left: 32px; }
     .session.finished h3::before { content: ""; position: absolute; left: 0; top: 2px; width: 20px; height: 24px; background: url("assets/checkered-flag.svg") center / contain no-repeat; }
     @media (max-width: 900px) { main { padding: 30px 24px; gap: 30px; } .clock-layout { grid-template-columns: minmax(216px, 272px) minmax(0, 1fr); gap: 28px; } .session { gap: 14px; padding: 18px 0; } }
-    @media (max-width: 650px) { main { padding: 28px 20px; } .race-header { align-items: flex-start; gap: 12px; } .clock-layout { display: flex; flex-direction: column-reverse; gap: 32px; } .clock-layout > svg { width: min(85vw, 480px); } .schedule { max-width: 384px; } }
+    @media (max-width: 650px) { main { padding: 28px 20px; } .race-header { gap: 18px; } .formula-1-logo { width: 80px; } .race-title { align-items: flex-start; gap: 12px; } .clock-layout { display: flex; flex-direction: column-reverse; gap: 32px; } .clock-layout > svg { width: min(85vw, 480px); } .schedule { max-width: 384px; } }
     .hand { transform-origin: 300px 300px; }
     .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 680px; }
     .debug-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -54,8 +56,11 @@
 <body>
 <main>
   <header class="race-header">
+    <img class="formula-1-logo" src="assets/formula-1-logo.svg" alt="Formula 1" width="320" height="80">
+    <div class="race-title">
     <img class="mexican-flag" src="assets/mexico.svg" alt="Mexico flag" width="52" height="39">
     <h1>Gran Premio de la Ciudad de México 2026</h1>
+    </div>
   </header>
   <div class="clock-layout">
   <section class="schedule" aria-label="Race weekend schedule">

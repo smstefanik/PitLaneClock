@@ -9,3 +9,6 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 
 ## Formula 1 typography
 - `assets/fonts/Formula1-Regular.woff2` and `Formula1-Bold.woff2` downloaded from https://www.formula1.com/s/fonts/formula1/ as requested. The Mexico race page uses Formula1 weight 400 for its race heading and weight 500 (Bold file) for session titles, defined in https://www.formula1.com/s/fonts.css. These are proprietary Formula 1 assets; no redistribution license was supplied by the source.
+
+## Formula 1 logo
+- `assets/formula-1-logo.svg`: Formula One logo by Liberty Media, from https://commons.wikimedia.org/wiki/File:Formula_One_logo.svg. Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with the owner.
