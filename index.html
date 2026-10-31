@@ -49,8 +49,22 @@
     .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 680px; }
     .debug-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .debug-panel[hidden] { display: none; }
-    #tag-heuer-logo { cursor: pointer; }
-    #tag-heuer-logo:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
+    #tag-heuer-logo, #bezel-debug-toggle { cursor: pointer; }
+    #tag-heuer-logo:focus-visible, #bezel-debug-toggle:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
+    .clock-dark #dial stop { stop-color: #080f0e; }
+    .clock-dark #lume stop { stop-color: #a9ffd8; }
+    .clock-dark #red stop { stop-color: #080f0e; }
+    .clock-dark #red stop:nth-child(even) { stop-color: #341116; }
+    .clock-dark .dial-track { fill: #111c21; }
+    .clock-dark .dial-center { fill: #080f0e; }
+    .clock-dark #bezel > path:first-child { stroke: #341116; }
+    .clock-dark #bezel > circle, .clock-dark #bezel-type [fill="#ffffff"] { fill: #b2ccc3; }
+    .clock-dark #indices [stroke="#ffffff"] { stroke: #080f0e; }
+    .clock-dark #marks, .clock-dark #indices, .clock-dark #hour, .clock-dark #minute { filter: drop-shadow(0 0 5px #a9ffd888); }
+    .clock-dark #second path { fill: #ff394b; stroke: #ff394b; }
+    .clock-dark #second { filter: drop-shadow(0 0 3.5px #ff394baa); }
+    .clock-dark #formula { stroke: #b2ccc3; }
+    .clock-dark #tag-heuer-logo { opacity: .8; }
     button { background: #171717; color: #ffffff; border: 1px solid #383838; border-radius: 7px; padding: 10px 15px; font: inherit; cursor: pointer; }
     button:hover { background: #292929; }
     button[aria-pressed="true"] { background: #ffffff; color: #111; border-color: #ffffff; }
@@ -101,12 +115,12 @@
     </defs>
     <g id="bezel"></g>
     <circle cx="300" cy="300" r="237.9" fill="url(#dial)"/>
-    <circle cx="300" cy="300" r="207" fill="#242b25"/>
-    <circle cx="300" cy="300" r="186.6" fill="url(#lume)"/>
+    <circle class="dial-track" cx="300" cy="300" r="207" fill="#242b25"/>
+    <circle class="dial-center" cx="300" cy="300" r="186.6" fill="url(#lume)"/>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
-    <image id="tag-heuer-logo" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" role="button" tabindex="0" aria-label="TAG Heuer — toggle debug controls" aria-controls="debug-panel" aria-expanded="false"/>
+    <image id="tag-heuer-logo" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" role="button" tabindex="0" aria-label="TAG Heuer — Heritage lume dark face" aria-pressed="false"/>
     <g id="formula" fill="none" stroke="#252d27" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-label="Formula 1"></g>
     <g filter="url(#hand-shadow)">
     <g id="hour" class="hand">
@@ -210,15 +224,19 @@
   requestWakeLock();
   var logo = document.getElementById('tag-heuer-logo');
   var debugPanel = document.getElementById('debug-panel');
+  function toggleClockTheme() {
+    var dark = logo.ownerSVGElement.classList.toggle('clock-dark');
+    logo.setAttribute('aria-pressed', String(dark));
+  }
   function toggleDebugControls() {
     debugPanel.hidden = !debugPanel.hidden;
-    logo.setAttribute('aria-expanded', String(!debugPanel.hidden));
+    document.getElementById('bezel-debug-toggle').setAttribute('aria-expanded', String(!debugPanel.hidden));
   }
-  logo.addEventListener('click', toggleDebugControls);
+  logo.addEventListener('click', toggleClockTheme);
   logo.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      toggleDebugControls();
+      toggleClockTheme();
     }
   });
   var selectedZone = 'local';
@@ -329,6 +347,22 @@
   var bezelType = document.getElementById('bezel-type');
   for(var digit=1; digit<12; digit++) {
     var group = element(bezelType,'g',{transform:'rotate('+digit*30+' 300 300)'});
+    if (digit === 5) {
+      group.setAttribute('id', 'bezel-debug-toggle');
+      group.setAttribute('role', 'button');
+      group.setAttribute('tabindex', '0');
+      group.setAttribute('aria-label', '25 — toggle debug controls');
+      group.setAttribute('aria-controls', 'debug-panel');
+      group.setAttribute('aria-expanded', 'false');
+      element(group, 'rect', {x:272,y:10,width:56,height:53,fill:'transparent',stroke:'none','pointer-events':'all'});
+      group.addEventListener('click', toggleDebugControls);
+      group.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleDebugControls();
+        }
+      });
+    }
     var numerals = element(group,'g',{transform:'translate(278.22 17) scale(.99 .94)',fill:'#ffffff',stroke:'none'});
     String(digit*5).padStart(2,'0').split('').forEach(function(character,index) {
       element(numerals,'path',{d:bezelGlyphs[character],transform:'translate('+index*24+' 0)','fill-rule':'evenodd'});
