@@ -51,12 +51,17 @@
     .debug-panel[hidden] { display: none; }
     #tag-heuer-logo, #bezel-debug-toggle { cursor: pointer; }
     #tag-heuer-logo:focus-visible, #bezel-debug-toggle:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
-    .clock-dark #dial stop { stop-color: #080f0e; }
+    .clock-layout > svg * {
+      transition: stop-color .6s ease-in-out, fill .6s ease-in-out, stroke .6s ease-in-out, opacity .6s ease-in-out, filter .6s ease-in-out;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .clock-layout > svg * { transition: none; }
+    }
+    .clock-dark #dial stop, .clock-dark #dial-center stop { stop-color: #080f0e; }
     .clock-dark #lume stop { stop-color: #a9ffd8; }
     .clock-dark #red stop { stop-color: #080f0e; }
     .clock-dark #red stop:nth-child(even) { stop-color: #341116; }
     .clock-dark .dial-track { fill: #111c21; }
-    .clock-dark .dial-center { fill: #080f0e; }
     .clock-dark #bezel > path:first-child { stroke: #341116; }
     .clock-dark #bezel > circle, .clock-dark #bezel-type [fill="#ffffff"] { fill: #b2ccc3; }
     .clock-dark #indices [stroke="#ffffff"] { stroke: #080f0e; }
@@ -109,6 +114,8 @@
       </filter>
       <linearGradient id="red" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#ff343c"/><stop offset=".3" stop-color="#d7202c"/><stop offset=".68" stop-color="#b51022"/><stop offset="1" stop-color="#e52635"/></linearGradient>
       <radialGradient id="dial"><stop stop-color="#ffffff"/><stop offset=".8" stop-color="#ffffff"/><stop offset="1" stop-color="#ffffff"/></radialGradient>
+      <!-- Separate paint keeps the center independent of the glowing markers while both palettes crossfade. -->
+      <radialGradient id="dial-center"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#ffffff"/></radialGradient>
       <linearGradient id="lume" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
       <linearGradient id="facet" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#70000a" stop-opacity="0"/><stop offset="1" stop-color="#60000c" stop-opacity=".65"/></linearGradient>
       <linearGradient id="facet-light" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7d7e" stop-opacity=".28"/><stop offset="1" stop-color="#ef3340" stop-opacity="0"/></linearGradient>
@@ -116,7 +123,7 @@
     <g id="bezel"></g>
     <circle cx="300" cy="300" r="237.9" fill="url(#dial)"/>
     <circle class="dial-track" cx="300" cy="300" r="207" fill="#242b25"/>
-    <circle class="dial-center" cx="300" cy="300" r="186.6" fill="url(#lume)"/>
+    <circle class="dial-center" cx="300" cy="300" r="186.6" fill="url(#dial-center)"/>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
