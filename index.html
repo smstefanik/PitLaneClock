@@ -9,8 +9,21 @@
     body { margin: 0; background: #000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
     main { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; gap: 20px; }
     svg { width: min(70vh, 85vw, 760px); height: auto; overflow: visible; }
+    .clock-layout { display: flex; align-items: center; justify-content: center; gap: 40px; }
+    .time-selector { width: 215px; flex-shrink: 0; display: grid; gap: 8px; }
+    .time-option, .time-option:hover, .time-option[aria-pressed="true"] { background: transparent; border: 0; border-radius: 0; padding: 0; color: #999; display: grid; grid-template-columns: 10px 1fr auto; align-items: center; gap: 8px; text-align: left; font-size: 20px; font-weight: 800; line-height: 1.2; }
+    .time-option[aria-pressed="true"] { color: #fff; }
+    .time-option::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; visibility: hidden; }
+    .time-option[aria-pressed="true"]::before { visibility: visible; }
+    .time-option time { font-variant-numeric: tabular-nums; }
+    @media (max-width: 900px) { .clock-layout { gap: 24px; } .clock-layout svg { width: min(70vh, 58vw, 760px); } }
+    @media (max-width: 560px) { .clock-layout { flex-direction: column; } .clock-layout svg { width: min(65vh, 85vw); } .time-selector { align-self: flex-start; } }
     .hand { transform-origin: 300px 300px; }
     .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 680px; }
+    .debug-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .debug-panel[hidden] { display: none; }
+    #tag-heuer-logo { cursor: pointer; }
+    #tag-heuer-logo:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
     button { background: #171717; color: #ffffff; border: 1px solid #383838; border-radius: 7px; padding: 10px 15px; font: inherit; cursor: pointer; }
     button:hover { background: #292929; }
     button[aria-pressed="true"] { background: #ffffff; color: #111; border-color: #ffffff; }
@@ -21,7 +34,12 @@
 </head>
 <body>
 <main>
-  <svg viewBox="0 0 600 600" role="img" aria-label="Analog clock">
+  <div class="clock-layout">
+  <div class="time-selector" role="group" aria-label="Clock timezone">
+    <button class="time-option" data-zone="local" aria-pressed="true"><span>MY TIME</span><time id="local-time">--:--</time></button>
+    <button class="time-option" data-zone="track" aria-pressed="false" title="Mexico City, CDMX, Mexico (GMT−6)"><span>TRACK TIME</span><time id="track-time">--:--</time></button>
+  </div>
+  <svg viewBox="0 0 600 600" role="group" aria-label="Analog clock">
     <defs>
       <filter id="hand-shadow" filterUnits="userSpaceOnUse" x="65" y="65" width="470" height="470" color-interpolation-filters="sRGB">
         <feDropShadow dx="1.5" dy="3" stdDeviation="2" flood-color="#141720" flood-opacity=".32"/>
@@ -45,7 +63,7 @@
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
-    <image id="tag-heuer-logo" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" aria-label="TAG Heuer"/>
+    <image id="tag-heuer-logo" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" role="button" tabindex="0" aria-label="TAG Heuer — toggle debug controls" aria-controls="debug-panel" aria-expanded="false"/>
     <g id="formula" fill="none" stroke="#252d27" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-label="Formula 1"></g>
     <g filter="url(#hand-shadow)">
     <g id="hour" class="hand">
@@ -71,6 +89,8 @@
     </g>
     <circle cx="300" cy="300" r="8" fill="#171b17" stroke="#888888" stroke-width="1.5" filter="url(#cap-shadow)"/>
   </svg>
+  </div>
+  <div id="debug-panel" class="debug-panel" hidden>
   <div class="controls" aria-label="Time simulation speed">
     <button data-speed="1" aria-pressed="true">1×</button>
     <button data-speed="10" aria-pressed="false">10×</button>
@@ -84,9 +104,39 @@
   </div>
   <output id="status" aria-live="off"></output>
   <p class="hint">Time controls are for animation testing · 600× = ten clock minutes per second</p>
+  </div>
 </main>
 <script>
   'use strict';
+  var logo = document.getElementById('tag-heuer-logo');
+  var debugPanel = document.getElementById('debug-panel');
+  function toggleDebugControls() {
+    debugPanel.hidden = !debugPanel.hidden;
+    logo.setAttribute('aria-expanded', String(!debugPanel.hidden));
+  }
+  logo.addEventListener('click', toggleDebugControls);
+  logo.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleDebugControls();
+    }
+  });
+  var selectedZone = 'local';
+  var trackFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+  var localFormatter = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  var localTime = document.getElementById('local-time');
+  var trackTime = document.getElementById('track-time');
+  document.querySelectorAll('[data-zone]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      if (selectedZone === button.dataset.zone) return;
+      zoneTransition = { from: displayedAngles.slice(), start: null, offsets: null };
+      selectedZone = button.dataset.zone;
+      document.querySelectorAll('[data-zone]').forEach(function (option) {
+        option.setAttribute('aria-pressed', String(option.dataset.zone === selectedZone));
+      });
+      lastStatus = -Infinity;
+    });
+  });
   var ns = 'http://www.w3.org/2000/svg';
   var marks = document.getElementById('marks');
   function element(parent, name, attrs) {
@@ -185,6 +235,8 @@
   formulaLetters.children[3].setAttribute('transform','translate(94.2 0) scale(1.15 1)');
   formulaLetters.lastElementChild.setAttribute('transform','translate(232 0) scale(1.15 1)');
   var hands = ['hour', 'minute', 'second'].map(function (id) { return document.getElementById(id); });
+  var displayedAngles = [0, 0, 0];
+  var zoneTransition = null;
   var speed = 1, paused = false, live = true;
   var baseTime = Date.now(), baseTick = performance.now(), lastStatus = 0;
   var statusElement = document.getElementById('status');
@@ -221,18 +273,39 @@
   };
   function frame(tick) {
     var date = new Date(simulatedTime(tick));
+    var trackParts = {};
+    trackFormatter.formatToParts(date).forEach(function (part) { trackParts[part.type] = part.value; });
+    var displayHour = selectedZone === 'track' ? Number(trackParts.hour) : date.getHours();
+    var displayMinute = selectedZone === 'track' ? Number(trackParts.minute) : date.getMinutes();
     var seconds = date.getSeconds() + date.getMilliseconds() / 1000;
     // The minute hand advances during the first second after each minute.
     // The hour and second hands sweep continuously.
     var minuteProgress = Math.min(seconds, 1);
     minuteProgress = minuteProgress * minuteProgress * (3 - 2 * minuteProgress);
-    var minutes = date.getMinutes() - 1 + minuteProgress;
-    var hours = date.getHours() % 12 + (date.getMinutes() + seconds / 60) / 60;
-    [hours * 30, minutes * 6, seconds * 6].forEach(function (angle, index) {
+    var minutes = displayMinute - 1 + minuteProgress;
+    var hours = displayHour % 12 + (displayMinute + seconds / 60) / 60;
+    var targetAngles = [hours * 30, minutes * 6, seconds * 6];
+    var transitionProgress = 1;
+    if (zoneTransition) {
+      if (zoneTransition.start === null) {
+        zoneTransition.start = tick;
+        zoneTransition.offsets = targetAngles.map(function (angle, index) {
+          return ((zoneTransition.from[index] - angle) % 360 + 540) % 360 - 180;
+        });
+      }
+      transitionProgress = Math.min((tick - zoneTransition.start) / 900, 1);
+      transitionProgress = transitionProgress * transitionProgress * (3 - 2 * transitionProgress);
+    }
+    targetAngles.forEach(function (angle, index) {
+      if (zoneTransition) angle += zoneTransition.offsets[index] * (1 - transitionProgress);
+      displayedAngles[index] = angle;
       hands[index].style.transform = 'rotate(' + angle + 'deg)';
     });
+    if (transitionProgress === 1) zoneTransition = null;
     if (tick - lastStatus > 100) {
-      statusElement.textContent = date.toLocaleTimeString('en-US', {hour12: false}) + ' · ' + (paused ? 'PAUSED' : live ? 'LIVE' : speed + '× SIMULATION');
+      localTime.textContent = localFormatter.format(date);
+      trackTime.textContent = trackParts.hour + ':' + trackParts.minute;
+      statusElement.textContent = String(displayHour).padStart(2, '0') + ':' + String(displayMinute).padStart(2, '0') + ':' + String(date.getSeconds()).padStart(2, '0') + ' · ' + (paused ? 'PAUSED' : live ? 'LIVE' : speed + '× SIMULATION');
       lastStatus = tick;
     }
     requestAnimationFrame(frame);
