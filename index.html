@@ -5,19 +5,35 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Pit Lane Clock — Prototype</title>
   <style>
+    @font-face { font-family: Formula1; src: url("assets/fonts/Formula1-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: Formula1; src: url("assets/fonts/Formula1-Bold.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
     * { box-sizing: border-box; }
     body { margin: 0; background: #000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-    main { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; gap: 20px; }
-    svg { width: min(70vh, 85vw, 760px); height: auto; overflow: visible; }
-    .clock-layout { display: flex; align-items: center; justify-content: center; gap: 40px; }
-    .time-selector { width: 215px; flex-shrink: 0; display: grid; gap: 8px; }
-    .time-option, .time-option:hover, .time-option[aria-pressed="true"] { background: transparent; border: 0; border-radius: 0; padding: 0; color: #999; display: grid; grid-template-columns: 10px 1fr auto; align-items: center; gap: 8px; text-align: left; font-size: 20px; font-weight: 800; line-height: 1.2; }
+    main { min-height: 100vh; max-width: 1600px; margin: auto; display: flex; flex-direction: column; justify-content: center; padding: 40px 48px; gap: 42px; }
+    .race-header { display: flex; align-items: center; justify-content: center; gap: 20px; }
+    h1 { margin: 0; font-family: Formula1, sans-serif; font-size: clamp(20px, 2.55vw, 40px); font-weight: 400; line-height: 1.35; letter-spacing: 0; text-transform: uppercase; }
+    .mexican-flag { width: clamp(36px, 3.5vw, 52px); height: auto; flex-shrink: 0; display: block; }
+    .clock-layout { display: grid; grid-template-columns: minmax(248px, 336px) minmax(0, 760px); align-items: center; justify-content: center; gap: clamp(40px, 6vw, 100px); }
+    .clock-layout > svg { width: 100%; height: auto; overflow: visible; }
+    .schedule { width: 100%; }
+    .time-selector { display: grid; gap: 10px; padding: 20px 0; border-top: 1px solid #34343b; border-bottom: 1px solid #34343b; }
+    .time-option, .time-option:hover, .time-option[aria-pressed="true"] { background: transparent; border: 0; border-radius: 0; padding: 0; color: #999; display: grid; grid-template-columns: 10px 1fr auto; align-items: center; gap: 8px; text-align: left; font-size: 19px; font-weight: 800; line-height: 1.2; }
     .time-option[aria-pressed="true"] { color: #fff; }
-    .time-option::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; visibility: hidden; }
+    .time-option::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; visibility: hidden; }
     .time-option[aria-pressed="true"]::before { visibility: visible; }
     .time-option time { font-variant-numeric: tabular-nums; }
-    @media (max-width: 900px) { .clock-layout { gap: 24px; } .clock-layout svg { width: min(70vh, 58vw, 760px); } }
-    @media (max-width: 560px) { .clock-layout { flex-direction: column; } .clock-layout svg { width: min(65vh, 85vw); } .time-selector { align-self: flex-start; } }
+    .sessions { list-style: none; margin: 12px 0 0; padding: 0; }
+    .session { display: grid; grid-template-columns: 64px 1fr; gap: 22px; align-items: center; padding: 22px 0; border-bottom: 1px solid #25252c; }
+    .session:last-child { border-bottom: 0; }
+    .session-date { border-right: 1px solid #34343b; font-size: 23px; font-weight: 900; line-height: 1.05; }
+    .session-date span { display: block; margin-top: 7px; color: #aaa; font: 17px ui-monospace, monospace; }
+    .session h3 { font-family: Formula1, sans-serif; margin: 0 0 7px; font-size: clamp(20px, 2vw, 27px); font-weight: 500; text-transform: uppercase; letter-spacing: 0; }
+    .session-time { color: #eee; font: 18px ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .session.finished .session-time { color: #888; }
+    .session > div:last-child { position: relative; padding-left: 32px; }
+    .session.finished h3::before { content: ""; position: absolute; left: 0; top: 2px; width: 20px; height: 24px; background: url("assets/checkered-flag.svg") center / contain no-repeat; }
+    @media (max-width: 900px) { main { padding: 30px 24px; gap: 30px; } .clock-layout { grid-template-columns: minmax(216px, 272px) minmax(0, 1fr); gap: 28px; } .session { gap: 14px; padding: 18px 0; } }
+    @media (max-width: 650px) { main { padding: 28px 20px; } .race-header { align-items: flex-start; gap: 12px; } .clock-layout { display: flex; flex-direction: column-reverse; gap: 32px; } .clock-layout > svg { width: min(85vw, 480px); } .schedule { max-width: 384px; } }
     .hand { transform-origin: 300px 300px; }
     .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 680px; }
     .debug-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -34,11 +50,24 @@
 </head>
 <body>
 <main>
+  <header class="race-header">
+    <img class="mexican-flag" src="assets/mexico.svg" alt="Mexico flag" width="52" height="39">
+    <h1>Gran Premio de la Ciudad de México 2026</h1>
+  </header>
   <div class="clock-layout">
+  <section class="schedule" aria-label="Race weekend schedule">
   <div class="time-selector" role="group" aria-label="Clock timezone">
     <button class="time-option" data-zone="local" aria-pressed="true"><span>MY TIME</span><time id="local-time">--:--</time></button>
     <button class="time-option" data-zone="track" aria-pressed="false" title="Mexico City, CDMX, Mexico (GMT−6)"><span>TRACK TIME</span><time id="track-time">--:--</time></button>
   </div>
+  <ol class="sessions">
+    <li class="session" data-start="2026-10-30T18:30:00Z" data-end="2026-10-30T19:30:00Z"><div class="session-date">OCT<span>30</span></div><div><h3>Practice 1</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-10-30T22:00:00Z" data-end="2026-10-30T23:00:00Z"><div class="session-date">OCT<span>30</span></div><div><h3>Practice 2</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-10-31T17:30:00Z" data-end="2026-10-31T18:30:00Z"><div class="session-date">OCT<span>31</span></div><div><h3>Practice 3</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-10-31T21:00:00Z" data-end="2026-10-31T22:00:00Z"><div class="session-date">OCT<span>31</span></div><div><h3>Qualifying</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-11-01T20:00:00Z" data-end="2026-11-01T22:00:00Z"><div class="session-date">NOV<span>01</span></div><div><h3>Race</h3><div class="session-time"></div></div></li>
+  </ol>
+  </section>
   <svg viewBox="0 0 600 600" role="group" aria-label="Analog clock">
     <defs>
       <filter id="hand-shadow" filterUnits="userSpaceOnUse" x="65" y="65" width="470" height="470" color-interpolation-filters="sRGB">
@@ -303,6 +332,13 @@
     });
     if (transitionProgress === 1) zoneTransition = null;
     if (tick - lastStatus > 100) {
+      document.querySelectorAll('.session').forEach(function (session) {
+        var start = new Date(session.dataset.start), end = new Date(session.dataset.end);
+        var finished = date >= end;
+        session.classList.toggle('finished', finished);
+        var formatter = selectedZone === 'track' ? trackFormatter : localFormatter;
+        session.querySelector('.session-time').textContent = finished ? 'FINISHED' : formatter.format(start).slice(0, 5) + ' – ' + formatter.format(end).slice(0, 5);
+      });
       localTime.textContent = localFormatter.format(date);
       trackTime.textContent = trackParts.hour + ':' + trackParts.minute;
       statusElement.textContent = String(displayHour).padStart(2, '0') + ':' + String(displayMinute).padStart(2, '0') + ':' + String(date.getSeconds()).padStart(2, '0') + ' · ' + (paused ? 'PAUSED' : live ? 'LIVE' : speed + '× SIMULATION');
