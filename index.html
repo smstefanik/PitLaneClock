@@ -16,12 +16,15 @@
     .clock-layout { display: grid; grid-template-columns: minmax(248px, 336px) minmax(0, 760px); align-items: center; justify-content: center; gap: clamp(40px, 6vw, 100px); }
     .clock-layout > svg { width: 100%; height: auto; overflow: visible; }
     .schedule { width: 100%; }
-    .time-selector { display: grid; gap: 10px; padding: 20px 0; border-top: 1px solid #34343b; border-bottom: 1px solid #34343b; }
-    .time-option, .time-option:hover, .time-option[aria-pressed="true"] { background: transparent; border: 0; border-radius: 0; padding: 0; color: #999; display: grid; grid-template-columns: 10px 1fr auto; align-items: center; gap: 8px; text-align: left; font-size: 19px; font-weight: 800; line-height: 1.2; }
-    .time-option[aria-pressed="true"] { color: #fff; }
-    .time-option::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; visibility: hidden; }
-    .time-option[aria-pressed="true"]::before { visibility: visible; }
-    .time-option time { font-variant-numeric: tabular-nums; }
+    .time-selector { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 5px; background: #111113; border: 1px solid #252528; border-radius: 9px; }
+    .time-option, .time-option:hover, .time-option[aria-pressed="true"] { position: relative; background: transparent; border: 0; border-radius: 5px; padding: 12px 14px 15px; color: #919196; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-align: left; line-height: 1.2; transition: background .18s, color .18s; }
+    .time-option:hover { background: #1b1b1e; color: #ddd; }
+    .time-option[aria-pressed="true"] { background: #202023; color: #fff; }
+    .time-option::after { content: ""; position: absolute; bottom: 0; left: 14px; right: 14px; height: 3px; border-radius: 2px; background: #ed241c; opacity: 0; transition: opacity .18s; }
+    .time-option[aria-pressed="true"]::after { opacity: 1; }
+    .time-option span { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; }
+    .time-option time { font: 24px ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .time-option:focus-visible { outline-offset: -2px; }
     .sessions { list-style: none; margin: 12px 0 0; padding: 0; }
     .session { display: grid; grid-template-columns: 64px 1fr; gap: 22px; align-items: center; padding: 22px 0; border-bottom: 1px solid #25252c; }
     .session:last-child { border-bottom: 0; }
