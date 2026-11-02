@@ -6,7 +6,7 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 
 ## Race heading
 - `assets/fonts/Michroma-Regular.ttf`: Michroma by Vernon Adams, from https://github.com/google/fonts/tree/main/ofl/michroma. SIL Open Font License included alongside the font.
-- `assets/brazil.svg`: flat Brazil flag from https://github.com/lipis/flag-icons. MIT license in `assets/LICENSE-flag-icons.txt`.
+- `assets/brazil.svg`: full 10:7 Brazil flag from https://flagcdn.com/br.svg (Flagpedia / FlagCDN). Replaces the cropped 4:3 variant.
 - `assets/mexico.svg`: flat Mexico flag from https://github.com/lipis/flag-icons. MIT license in `assets/LICENSE-flag-icons.txt`.
 
 ## Formula 1 typography
