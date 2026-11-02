@@ -50,8 +50,8 @@
     .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 680px; }
     .debug-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .debug-panel[hidden] { display: none; }
-    #tag-heuer-logo, #bezel-debug-toggle { cursor: pointer; }
-    #tag-heuer-logo:focus-visible, #bezel-debug-toggle:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
+    #tag-heuer-logo, #bezel-debug-toggle, #bezel-brazil-toggle { cursor: pointer; }
+    #tag-heuer-logo:focus-visible, #bezel-debug-toggle:focus-visible, #bezel-brazil-toggle:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
     .clock-layout > svg * {
       transition: stop-color .6s ease-in-out, fill .6s ease-in-out, stroke .6s ease-in-out, opacity .6s ease-in-out, filter .6s ease-in-out;
     }
@@ -75,6 +75,32 @@
     #tag-heuer-logo .logo-dark { opacity: 0; filter: drop-shadow(0 0 1.3px #a9ffd855); }
     .clock-dark #tag-heuer-logo .logo-light { opacity: 0; }
     .clock-dark #tag-heuer-logo .logo-dark { opacity: 1; }
+    /* Hidden Brazil palette: keep the reference geometry, recolor its materials. */
+    .clock-brazil #red stop { stop-color: #229e45; }
+    .clock-brazil #red stop:nth-child(2) { stop-color: #16843b; }
+    .clock-brazil #red stop:nth-child(3) { stop-color: #006b32; }
+    .clock-brazil #bezel > path:first-child { stroke: #005b2b; }
+    .clock-brazil #facet stop { stop-color: #003b21; }
+    .clock-brazil #facet-light stop { stop-color: #a5e879; }
+    .clock-brazil #dial stop { stop-color: #214ca0; }
+    .clock-brazil #dial stop:last-child { stop-color: #102c69; }
+    .clock-brazil #dial-center stop { stop-color: #214ca0; }
+    .clock-brazil #dial-center stop:last-child { stop-color: #16377c; }
+    .clock-brazil .dial-track { fill: #0b2454; }
+    .clock-brazil #lume stop { stop-color: #ffdf00; }
+    .clock-brazil #indices { stroke: #082554; }
+    .clock-brazil #indices [stroke="#ffffff"] { stroke: #ffffff; }
+    .clock-brazil #bezel > circle, .clock-brazil #bezel-type [fill="#ffffff"] { fill: #ffffff; }
+    .clock-brazil #bezel-triangle-dot { fill: #229e45; }
+    .clock-brazil #formula path { stroke: #ffffff; }
+    .clock-brazil #hour > path:first-child, .clock-brazil #minute > path:first-child { fill: #ffffff; stroke: #082554; }
+    .clock-brazil #hour circle, .clock-brazil #hour path[fill="none"] { stroke: #082554; }
+    .clock-brazil #second path { fill: #ffdf00; stroke: #e5bd00; }
+    .clock-brazil.clock-dark #dial stop, .clock-brazil.clock-dark #dial-center stop { stop-color: #061631; }
+    .clock-brazil.clock-dark #red stop { stop-color: #052b18; }
+    .clock-brazil.clock-dark #red stop:nth-child(even) { stop-color: #075227; }
+    .clock-brazil.clock-dark #marks, .clock-brazil.clock-dark #indices, .clock-brazil.clock-dark #hour, .clock-brazil.clock-dark #minute { filter: drop-shadow(0 0 5px #ffdf0066); }
+    .clock-brazil.clock-dark #second { filter: drop-shadow(0 0 2.5px #ffdf0055); }
     button { background: #171717; color: #ffffff; border: 1px solid #383838; border-radius: 7px; padding: 10px 15px; font: inherit; cursor: pointer; }
     button:hover { background: #292929; }
     button[aria-pressed="true"] { background: #ffffff; color: #111; border-color: #ffffff; }
@@ -385,8 +411,24 @@
     });
     element(group,'rect',{x:292,y:52.1,width:16,height:6,fill:'#ffffff',stroke:'none',rx:0.7});
   }
-  element(bezelType,'path',{d:'M274 13.55 H326 L300 47.55 Z',fill:'#ffffff',stroke:'none'});
-  element(bezelType,'circle',{cx:300,cy:25.3,r:9,fill:'#c81b2a',stroke:'none'});
+  var brazilToggle = element(bezelType, 'g', {
+    id:'bezel-brazil-toggle', role:'button', tabindex:'0',
+    'aria-label':'Top triangle — toggle Brazil colors', 'aria-pressed':'false'
+  });
+  element(brazilToggle, 'rect', {x:272,y:10,width:56,height:42,fill:'transparent',stroke:'none','pointer-events':'all'});
+  element(brazilToggle,'path',{d:'M274 13.55 H326 L300 47.55 Z',fill:'#ffffff',stroke:'none'});
+  element(brazilToggle,'circle',{id:'bezel-triangle-dot',cx:300,cy:25.3,r:9,fill:'#c81b2a',stroke:'none'});
+  function toggleBrazilPalette() {
+    var enabled = brazilToggle.ownerSVGElement.classList.toggle('clock-brazil');
+    brazilToggle.setAttribute('aria-pressed', String(enabled));
+  }
+  brazilToggle.addEventListener('click', toggleBrazilPalette);
+  brazilToggle.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleBrazilPalette();
+    }
+  });
   element(bezelType,'rect',{x:292,y:52.1,width:16,height:6,fill:'#ffffff',stroke:'none',rx:0.7});
   var formulaLetters = lettering(document.getElementById('formula'),'FORMULA 1',204,378,0.78,32);
   formulaLetters.setAttribute('transform','translate(203.42 378) scale(.78 .62)');
