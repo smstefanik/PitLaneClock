@@ -14,7 +14,7 @@
     .formula-1-logo { display: block; width: 96px; height: auto; }
     .race-title { display: flex; align-items: center; justify-content: center; gap: 20px; }
     h1 { margin: 0; font-family: Formula1, sans-serif; font-size: clamp(20px, 2.55vw, 40px); font-weight: 400; line-height: 1.35; letter-spacing: 0; text-transform: uppercase; }
-    .mexican-flag { width: clamp(36px, 3.5vw, 52px); height: auto; flex-shrink: 0; display: block; }
+    .race-flag { width: clamp(36px, 3.5vw, 52px); height: auto; flex-shrink: 0; display: block; }
     /* Grow with the viewport, reserving space for the header, gap, and page padding. */
     .clock-layout { display: grid; grid-template-columns: minmax(248px, 336px) minmax(0, max(480px, calc(100dvh - 222px))); align-items: center; justify-content: center; gap: clamp(80px, 12vw, 200px); }
     .clock-layout > svg { width: 100%; height: auto; overflow: visible; }
@@ -88,22 +88,22 @@
   <header class="race-header">
     <img class="formula-1-logo" src="assets/formula-1-logo.svg" alt="Formula 1" width="320" height="80">
     <div class="race-title">
-    <img class="mexican-flag" src="assets/mexico.svg" alt="Mexico flag" width="52" height="39">
-    <h1>Gran Premio de la Ciudad de México 2026</h1>
+    <img class="race-flag" src="assets/brazil.svg" alt="Brazil flag" width="52" height="39">
+    <h1>MSC Cruises Grande Prêmio de São Paulo 2026</h1>
     </div>
   </header>
   <div class="clock-layout">
   <section class="schedule" aria-label="Race weekend schedule">
   <div class="time-selector" role="group" aria-label="Clock timezone">
     <button class="time-option" data-zone="local" aria-pressed="true"><span>MY TIME</span><time id="local-time">--:--</time></button>
-    <button class="time-option" data-zone="track" aria-pressed="false" title="Mexico City, CDMX, Mexico (GMT−6)"><span>TRACK TIME</span><time id="track-time">--:--</time></button>
+    <button class="time-option" data-zone="track" aria-pressed="false" title="São Paulo, Brazil (GMT−3)"><span>TRACK TIME</span><time id="track-time">--:--</time></button>
   </div>
   <ol class="sessions">
-    <li class="session" data-start="2026-10-30T18:30:00Z" data-end="2026-10-30T19:30:00Z"><div class="session-date">OCT<span>30</span></div><div><h3>Practice 1</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-10-30T22:00:00Z" data-end="2026-10-30T23:00:00Z"><div class="session-date">OCT<span>30</span></div><div><h3>Practice 2</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-10-31T17:30:00Z" data-end="2026-10-31T18:30:00Z"><div class="session-date">OCT<span>31</span></div><div><h3>Practice 3</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-10-31T21:00:00Z" data-end="2026-10-31T22:00:00Z"><div class="session-date">OCT<span>31</span></div><div><h3>Qualifying</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-11-01T20:00:00Z" data-end="2026-11-01T22:00:00Z"><div class="session-date">NOV<span>01</span></div><div><h3>Race</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-11-06T15:30:00Z" data-end="2026-11-06T16:30:00Z"><div class="session-date">NOV<span>06</span></div><div><h3>Practice 1</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-11-06T19:00:00Z" data-end="2026-11-06T20:00:00Z"><div class="session-date">NOV<span>06</span></div><div><h3>Practice 2</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-11-07T14:30:00Z" data-end="2026-11-07T15:30:00Z"><div class="session-date">NOV<span>07</span></div><div><h3>Practice 3</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-11-07T18:00:00Z" data-end="2026-11-07T19:00:00Z"><div class="session-date">NOV<span>07</span></div><div><h3>Qualifying</h3><div class="session-time"></div></div></li>
+    <li class="session" data-start="2026-11-08T17:00:00Z" data-end="2026-11-08T19:00:00Z"><div class="session-date">NOV<span>08</span></div><div><h3>Race</h3><div class="session-time"></div></div></li>
   </ol>
   </section>
   <svg viewBox="0 0 600 600" role="group" aria-label="Analog clock">
@@ -256,9 +256,9 @@
     }
   });
   var selectedZone = 'local';
-  var trackFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+  var trackFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
   var localFormatter = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
-  var trackDateFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Mexico_City', month: 'short', day: '2-digit' });
+  var trackDateFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', month: 'short', day: '2-digit' });
   var localDateFormatter = new Intl.DateTimeFormat('en-GB', { month: 'short', day: '2-digit' });
   var sessions = Array.from(document.querySelectorAll('.session')).map(function (session) {
     var time = session.querySelector('.session-time');
