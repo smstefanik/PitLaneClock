@@ -132,7 +132,7 @@
     <li class="session" data-start="2026-11-08T17:00:00Z" data-end="2026-11-08T19:00:00Z"><div class="session-date">NOV<span>08</span></div><div><h3>Race</h3><div class="session-time"></div></div></li>
   </ol>
   </section>
-  <svg viewBox="0 0 600 600" role="group" aria-label="Analog clock">
+  <svg class="clock-brazil" viewBox="0 0 600 600" role="group" aria-label="Analog clock">
     <defs>
       <filter id="hand-shadow" filterUnits="userSpaceOnUse" x="65" y="65" width="470" height="470" color-interpolation-filters="sRGB">
         <feDropShadow dx="1.5" dy="3" stdDeviation="2" flood-color="#141720" flood-opacity=".32"/>
@@ -413,7 +413,7 @@
   }
   var brazilToggle = element(bezelType, 'g', {
     id:'bezel-brazil-toggle', role:'button', tabindex:'0',
-    'aria-label':'Top triangle — toggle Brazil colors', 'aria-pressed':'false'
+    'aria-label':'Top triangle — toggle Brazil colors', 'aria-pressed':'true'
   });
   element(brazilToggle, 'rect', {x:272,y:10,width:56,height:42,fill:'transparent',stroke:'none','pointer-events':'all'});
   element(brazilToggle,'path',{d:'M274 13.55 H326 L300 47.55 Z',fill:'#ffffff',stroke:'none'});
