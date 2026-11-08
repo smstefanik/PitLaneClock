@@ -33,7 +33,7 @@ var races = [
     ]
   },
   {
-    id: 'qatar', round: 22, defaultTheme: 'classic', name: 'Qatar Grand Prix',
+    id: 'qatar', round: 22, defaultTheme: 'desert-pearl', name: 'Qatar Grand Prix',
     officialName: 'FORMULA 1 QATAR AIRWAYS QATAR GRAND PRIX 2026',
     location: 'Lusail, Qatar', timeZone: 'Asia/Qatar',
     flag: 'assets/qatar.svg', flagAlt: 'Qatar flag',
