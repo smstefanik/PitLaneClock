@@ -200,6 +200,53 @@
     .clock-desert-pearl.clock-dark .hand-cap { fill: #3a1426; stroke: #887451; }
     .clock-desert-pearl.clock-dark #tag-heuer-logo .logo-pearl { opacity: 0; }
     .clock-desert-pearl.clock-dark #tag-heuer-logo .logo-pearl-lume { opacity: 1; filter: drop-shadow(0 0 1.3px #bcefc855); }
+    /* Yas Marina: turquoise ceramic and a navy dial, with an illuminated track outline. */
+    .yas-only { display: none; }
+    .clock-yas-marina .yas-only { display: inline; }
+    .clock-yas-marina #red stop { stop-color: #20dce4; }
+    .clock-yas-marina #red stop:nth-child(2) { stop-color: #08b5c5; }
+    .clock-yas-marina #red stop:nth-child(3) { stop-color: #007c92; }
+    .clock-yas-marina #bezel > path:first-child { stroke: #006576; }
+    .clock-yas-marina #facet stop { stop-color: #003b52; }
+    .clock-yas-marina #facet-light stop { stop-color: #a6ffff; }
+    .clock-yas-marina #dial stop, .clock-yas-marina #dial-center stop { stop-color: #122e49; }
+    .clock-yas-marina #dial stop:last-child, .clock-yas-marina #dial-center stop:last-child { stop-color: #06162b; }
+    .clock-yas-marina .dial-track { fill: #050e1b; }
+    .clock-yas-marina #lume stop { stop-color: #f1ffff; }
+    .clock-yas-marina #lume stop:last-child { stop-color: #ccebef; }
+    .clock-yas-marina #indices { stroke: #809da9; }
+    .clock-yas-marina #indices [stroke="#ffffff"] { stroke: #0a1928; }
+    .clock-yas-marina #bezel > circle, .clock-yas-marina #bezel-type [fill="#ffffff"] { fill: #edffff; }
+    .clock-yas-marina #bezel-triangle-dot { fill: #079eaf; }
+    .clock-yas-marina #formula { transform: translateY(-9px); }
+    .clock-yas-marina #formula path { stroke: #e4f7fc; }
+    .clock-yas-marina #hour > path:first-child, .clock-yas-marina #minute > path:first-child { fill: #192934; stroke: #a6bcc5; }
+    .clock-yas-marina #hour circle, .clock-yas-marina #hour path[fill="none"] { stroke: #22323d; }
+    .clock-yas-marina #second path { fill: #12e4ed; stroke: #0ec5d6; }
+    .clock-yas-marina .hand-cap { fill: #182733; stroke: #809da9; }
+    .yas-track { fill: none; stroke: #25bbd5; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .clock-yas-marina.clock-dark #red stop { stop-color: #062b3a; }
+    .clock-yas-marina.clock-dark #red stop:nth-child(even) { stop-color: #084657; }
+    .clock-yas-marina.clock-dark #bezel > path:first-child { stroke: #0b5664; }
+    .clock-yas-marina.clock-dark #facet stop { stop-color: #020f1e; }
+    .clock-yas-marina.clock-dark #facet-light stop { stop-color: #2b8797; }
+    .clock-yas-marina.clock-dark #dial stop, .clock-yas-marina.clock-dark #dial-center stop { stop-color: #020914; }
+    .clock-yas-marina.clock-dark .dial-track { fill: #06111e; }
+    .clock-yas-marina.clock-dark #lume stop { stop-color: #b7ffff; }
+    .clock-yas-marina.clock-dark #lume stop:last-child { stop-color: #78e6ec; }
+    .clock-yas-marina.clock-dark #indices { stroke: #234653; }
+    .clock-yas-marina.clock-dark #indices [stroke="#ffffff"] { stroke: #020914; }
+    .clock-yas-marina.clock-dark #bezel > circle, .clock-yas-marina.clock-dark #bezel-type [fill="#ffffff"] { fill: #8fe1e6; }
+    .clock-yas-marina.clock-dark #bezel-triangle-dot { fill: #084657; }
+    .clock-yas-marina.clock-dark #formula path { stroke: #83b9c6; }
+    .clock-yas-marina.clock-dark #hour > path:first-child, .clock-yas-marina.clock-dark #minute > path:first-child { fill: #0c1c28; stroke: #456b79; }
+    .clock-yas-marina.clock-dark #hour circle, .clock-yas-marina.clock-dark #hour path[fill="none"] { stroke: #0c1c28; }
+    .clock-yas-marina.clock-dark #marks, .clock-yas-marina.clock-dark #indices, .clock-yas-marina.clock-dark #hour, .clock-yas-marina.clock-dark #minute { filter: drop-shadow(0 0 4px #70f4ff77); }
+    .clock-yas-marina.clock-dark #second path { fill: #21efff; stroke: #21efff; }
+    .clock-yas-marina.clock-dark #second { filter: drop-shadow(0 0 2px #21efff66); }
+    .clock-yas-marina.clock-dark .hand-cap { fill: #0c1c28; stroke: #456b79; }
+    .clock-yas-marina.clock-dark .yas-track { stroke: #2bdcf2; filter: drop-shadow(0 0 3px #13ccebbb); }
+    .clock-yas-marina.clock-dark #tag-heuer-logo .logo-dark { filter: drop-shadow(0 0 1.3px #70f4ff55); }
     button { background: #171717; color: #ffffff; border: 1px solid #383838; border-radius: 7px; padding: 10px 15px; font: inherit; cursor: pointer; }
     button:hover { background: #292929; }
     button[aria-pressed="true"] { background: #ffffff; color: #111; border-color: #ffffff; }
@@ -258,6 +305,9 @@
     <circle cx="300" cy="300" r="237.9" fill="url(#dial)"/>
     <circle class="dial-track" cx="300" cy="300" r="207" fill="#242b25"/>
     <circle class="dial-center" cx="300" cy="300" r="186.6" fill="url(#dial-center)"/>
+    <g class="yas-only" role="img" aria-label="Yas Marina circuit outline" pointer-events="none">
+      <path class="yas-track" d="M225 423 Q226 417 234 411 L260 392 Q263 390 268 391 L273 390 Q274 389 274 386 Q274 384 278 386 L287 390 L347 407 Q356 409 360 403 L364 397 Q368 392 377 395 L389 399 Q395 403 388 403 L375 402 Q369 403 373 409 Q373 415 364 414 L320 414 L291 419 Q287 420 287 417 L287 398 Q287 394 283 395 L278 396 Q274 397 275 401 L276 407 Q276 410 272 410 L268 411 Q265 411 266 407 L267 403 Q268 400 264 402 L249 410 Q240 415 238 421 Q235 426 229 426 Q224 427 225 423 Z"/>
+    </g>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
@@ -331,6 +381,7 @@
   <button class="theme-option" role="menuitemradio" aria-checked="true" tabindex="-1" data-theme="brazil"><span class="theme-swatch" style="--bezel:#229e45;--face:#214ca0;--markers:#ffdf00" aria-hidden="true"></span>Brazil</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="vegas"><span class="theme-swatch" style="--bezel:#cf3d63;--face:#fff;--markers:#007eb5" aria-hidden="true"></span>Vegas</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="desert-pearl"><span class="theme-swatch" style="--bezel:#741a36;--face:#fff9ed;--markers:#c9aa79" aria-hidden="true"></span>Qatar</button>
+  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="yas-marina"><span class="theme-swatch" style="--bezel:#08b5c5;--face:#122e49;--markers:#edffff" aria-hidden="true"></span>Abu Dhabi · Yas Marina</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="classic"><span class="theme-swatch" style="--bezel:#d7202c;--face:#fff;--markers:#28312b" aria-hidden="true"></span>Classic</button>
 </div>
 <script src="races.js"></script>
@@ -471,7 +522,7 @@
       list.appendChild(row);
       return { element: row, start: new Date(session.start), end: new Date(session.end), range: range, badge: badge };
     });
-    restoreRaceTheme(race);
+    applyRaceTheme(race);
     lastStatus = -Infinity;
   }
   function synchronizeRace(time) {
@@ -630,20 +681,20 @@
     'brazil': { brazil: true, label: 'Brazil' },
     'vegas': { brazil: false, label: 'Vegas' },
     'desert-pearl': { brazil: false, label: 'Qatar' },
+    'yas-marina': { brazil: false, label: 'Yas Marina' },
     'classic': { brazil: false, label: 'Classic' }
   };
-  function restoreRaceTheme(race) {
-    var id = race.defaultTheme;
-    try { id = localStorage.getItem('pit-lane-clock-theme:' + race.id) || id; } catch (error) { /* Use the race default. */ }
-    selectTheme(Object.prototype.hasOwnProperty.call(themes, id) ? id : race.defaultTheme, false);
+  function applyRaceTheme(race) {
+    selectTheme(race.defaultTheme);
   }
-  function selectTheme(id, remember) {
+  function selectTheme(id) {
     if (!Object.prototype.hasOwnProperty.call(themes, id)) return;
     var theme = themes[id];
     var clock = themeToggle.ownerSVGElement;
     clock.classList.toggle('clock-brazil', theme.brazil);
     clock.classList.toggle('clock-vegas', id === 'vegas');
     clock.classList.toggle('clock-desert-pearl', id === 'desert-pearl');
+    clock.classList.toggle('clock-yas-marina', id === 'yas-marina');
     selectedTheme = id;
     var dark = clock.classList.contains('clock-dark');
     logo.setAttribute('aria-pressed', String(dark));
@@ -652,9 +703,6 @@
     themeOptions.forEach(function (option) {
       option.setAttribute('aria-checked', String(option.dataset.theme === id));
     });
-    try {
-      if (activeRace && remember !== false) localStorage.setItem('pit-lane-clock-theme:' + activeRace.id, id);
-    } catch (error) { /* Storage may be unavailable. */ }
   }
   function positionThemeMenu() {
     var anchor = themeToggle.getBoundingClientRect();

@@ -48,7 +48,7 @@ var races = [
     ]
   },
   {
-    id: 'abu-dhabi', round: 23, defaultTheme: 'classic', name: 'Abu Dhabi Grand Prix',
+    id: 'abu-dhabi', round: 23, defaultTheme: 'yas-marina', name: 'Abu Dhabi Grand Prix',
     officialName: 'FORMULA 1 ETIHAD AIRWAYS ABU DHABI GRAND PRIX 2026',
     location: 'Abu Dhabi, United Arab Emirates', timeZone: 'Asia/Dubai',
     flag: 'assets/united-arab-emirates.svg', flagAlt: 'United Arab Emirates flag',
