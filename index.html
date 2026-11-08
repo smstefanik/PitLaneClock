@@ -337,10 +337,22 @@
   requestWakeLock();
   var logo = document.getElementById('tag-heuer-logo');
   var debugPanel = document.getElementById('debug-panel');
-  function toggleClockTheme() {
-    var dark = logo.ownerSVGElement.classList.toggle('clock-dark');
+  var deviceColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  function applyClockMode(dark) {
+    logo.ownerSVGElement.classList.toggle('clock-dark', dark);
     logo.setAttribute('aria-pressed', String(dark));
-    selectTheme(selectedTheme);
+  }
+  function followDeviceColorScheme() {
+    applyClockMode(deviceColorScheme.matches);
+  }
+  followDeviceColorScheme();
+  deviceColorScheme.addEventListener('change', followDeviceColorScheme);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') followDeviceColorScheme();
+  });
+  function toggleClockTheme() {
+    // A manual preview lasts until the device setting changes or the page is reopened.
+    applyClockMode(!logo.ownerSVGElement.classList.contains('clock-dark'));
   }
   function toggleDebugControls() {
     debugPanel.hidden = !debugPanel.hidden;
@@ -587,7 +599,6 @@
     });
     try {
       if (activeRace && remember !== false) localStorage.setItem('pit-lane-clock-theme:' + activeRace.id, id);
-      localStorage.setItem('pit-lane-clock-lume', String(dark));
     } catch (error) { /* Storage may be unavailable. */ }
   }
   function positionThemeMenu() {
@@ -649,9 +660,6 @@
   });
   window.addEventListener('resize', function () { if (!themeMenu.hidden) positionThemeMenu(); });
   window.addEventListener('scroll', function () { if (!themeMenu.hidden) positionThemeMenu(); }, true);
-  try {
-    themeToggle.ownerSVGElement.classList.toggle('clock-dark', localStorage.getItem('pit-lane-clock-lume') === 'true');
-  } catch (error) { /* Use light mode by default. */ }
   element(bezelType,'rect',{x:292,y:52.1,width:16,height:6,fill:'#ffffff',stroke:'none',rx:0.7});
   var formulaLetters = lettering(document.getElementById('formula'),'FORMULA 1',204,378,0.78,32);
   formulaLetters.setAttribute('transform','translate(203.42 378) scale(.78 .62)');
