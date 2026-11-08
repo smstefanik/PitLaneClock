@@ -247,6 +247,56 @@
     .clock-yas-marina.clock-dark .hand-cap { fill: #0c1c28; stroke: #456b79; }
     .clock-yas-marina.clock-dark .yas-track { stroke: #2bdcf2; filter: drop-shadow(0 0 3px #13ccebbb); }
     .clock-yas-marina.clock-dark #tag-heuer-logo .logo-dark { filter: drop-shadow(0 0 1.3px #70f4ff55); }
+    /* Papaya: Papaya Classic light paired with Silverstone lume. */
+    .papaya-only { display: none; }
+    .clock-papaya .papaya-only { display: inline; }
+    .clock-papaya #tag-heuer-logo > image[class] { opacity: 0; }
+    .clock-papaya #red stop { stop-color: #ff8200; }
+    .clock-papaya #red stop:nth-child(2) { stop-color: #ff6800; }
+    .clock-papaya #red stop:nth-child(3) { stop-color: #d94700; }
+    .clock-papaya #red stop:last-child { stop-color: #f96b00; }
+    .clock-papaya #bezel > path:first-child { stroke: #b83d00; }
+    .clock-papaya #facet stop { stop-color: #922b00; }
+    .clock-papaya #facet-light stop { stop-color: #ff9b32; }
+    .clock-papaya #dial stop, .clock-papaya #dial-center stop { stop-color: #ffffff; }
+    .clock-papaya .dial-track { fill: #24262a; }
+    .clock-papaya #lume stop { stop-color: #ffffff; }
+    .clock-papaya #indices { stroke: #25272b; }
+    .clock-papaya #indices [stroke="#ffffff"] { stroke: #ffffff; }
+    .clock-papaya #bezel > circle, .clock-papaya #bezel-type [fill="#ffffff"] { fill: #ffffff; }
+    .clock-papaya #bezel-triangle-dot { fill: #e95b00; }
+    .clock-papaya #formula path { stroke: #25272b; }
+    .clock-papaya #hour > path:first-child, .clock-papaya #minute > path:first-child { fill: #25272b; stroke: #15171a; }
+    .clock-papaya #hour circle, .clock-papaya #hour path[fill="none"] { stroke: #25272b; }
+    .clock-papaya #second path { fill: #ff8000; stroke: #e76b00; }
+    .clock-papaya .hand-cap { fill: #25272b; stroke: #15171a; }
+    .papaya-speedmark { fill: #ff8000; }
+    .papaya-wordmark { fill: #202226; }
+    .papaya-ring { fill: none; stroke: #ff8000; stroke-width: 2; opacity: 0; pointer-events: none; }
+    .clock-papaya.clock-dark #red stop { stop-color: #131d27; }
+    .clock-papaya.clock-dark #red stop:nth-child(2) { stop-color: #09121b; }
+    .clock-papaya.clock-dark #red stop:nth-child(3) { stop-color: #040a11; }
+    .clock-papaya.clock-dark #red stop:last-child { stop-color: #14212c; }
+    .clock-papaya.clock-dark #bezel > path:first-child { stroke: #263846; }
+    .clock-papaya.clock-dark #facet stop { stop-color: #02070d; }
+    .clock-papaya.clock-dark #facet-light stop { stop-color: #456071; }
+    .clock-papaya.clock-dark #dial stop, .clock-papaya.clock-dark #dial-center stop { stop-color: #060b10; }
+    .clock-papaya.clock-dark .dial-track { fill: #0a141d; }
+    .clock-papaya.clock-dark #lume stop { stop-color: #b9f7ff; }
+    .clock-papaya.clock-dark #lume stop:last-child { stop-color: #85e9fa; }
+    .clock-papaya.clock-dark #indices { stroke: #263b46; }
+    .clock-papaya.clock-dark #indices [stroke="#ffffff"] { stroke: #060b10; }
+    .clock-papaya.clock-dark #bezel > circle, .clock-papaya.clock-dark #bezel-type [fill="#ffffff"] { fill: #6f93a9; }
+    .clock-papaya.clock-dark #bezel-triangle-dot { fill: #0c1721; }
+    .clock-papaya.clock-dark #formula path { stroke: #b4d7df; }
+    .clock-papaya.clock-dark #hour > path:first-child, .clock-papaya.clock-dark #minute > path:first-child { fill: #15212a; stroke: #425967; }
+    .clock-papaya.clock-dark #hour circle, .clock-papaya.clock-dark #hour path[fill="none"] { stroke: #15212a; }
+    .clock-papaya.clock-dark #marks, .clock-papaya.clock-dark #indices, .clock-papaya.clock-dark #hour, .clock-papaya.clock-dark #minute { filter: drop-shadow(0 0 3px #85e9fa66); }
+    .clock-papaya.clock-dark #second path { fill: #ff8000; stroke: #ff8000; }
+    .clock-papaya.clock-dark #second { filter: drop-shadow(0 0 2px #ff800044); }
+    .clock-papaya.clock-dark .hand-cap { fill: #15212a; stroke: #425967; }
+    .clock-papaya.clock-dark .papaya-ring { opacity: 1; filter: drop-shadow(0 0 1px #ff800055); }
+    .clock-papaya.clock-dark .papaya-wordmark { fill: #d5e9ed; }
     button { background: #171717; color: #ffffff; border: 1px solid #383838; border-radius: 7px; padding: 10px 15px; font: inherit; cursor: pointer; }
     button:hover { background: #292929; }
     button[aria-pressed="true"] { background: #ffffff; color: #111; border-color: #ffffff; }
@@ -308,6 +358,7 @@
     <g class="yas-only" role="img" aria-label="Yas Marina circuit outline" pointer-events="none">
       <path class="yas-track" d="M225 423 Q226 417 234 411 L260 392 Q263 390 268 391 L273 390 Q274 389 274 386 Q274 384 278 386 L287 390 L347 407 Q356 409 360 403 L364 397 Q368 392 377 395 L389 399 Q395 403 388 403 L375 402 Q369 403 373 409 Q373 415 364 414 L320 414 L291 419 Q287 420 287 417 L287 398 Q287 394 283 395 L278 396 Q274 397 275 401 L276 407 Q276 410 272 410 L268 411 Q265 411 266 407 L267 403 Q268 400 264 402 L249 410 Q240 415 238 421 Q235 426 229 426 Q224 427 225 423 Z"/>
     </g>
+    <circle class="papaya-only papaya-ring" cx="300" cy="300" r="217"/>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
@@ -316,6 +367,10 @@
       <image class="logo-dark" href="tag-heuer-logo-dark.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-pearl" href="tag-heuer-logo-pearl.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-pearl-lume" href="tag-heuer-logo-pearl-lume.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
+      <g class="papaya-only" aria-hidden="true" pointer-events="none">
+        <svg class="papaya-speedmark" x="270" y="181" width="60" height="33" viewBox="0 0 823.93 452.27"><path d="M426.74,451.28c3.64-4.87,7.32-9.72,10.93-14.62,22.45-30.53,43-62.19,56.61-97.82,6.22-16.26,10.51-32.94,11-50.48.83-32.21-12.94-56.47-39.89-73.5-21.06-13.3-44.58-19.8-68.83-23.91-44.19-7.49-88.59-6.83-133-3.16A1047.35,1047.35,0,0,0,52,227.7c-15.93,4.71-31.52,10.54-47.27,15.86a7.91,7.91,0,0,1-4.53.54c11.57-7.07,23.09-14.21,34.7-21.2A1743,1743,0,0,1,253.4,111.24c94.2-39.93,190.66-73,291-93.94C594.51,6.84,645.06-.54,696.45-.07,723.86.19,751,2.63,777,12.08c12.83,4.66,24.67,11.09,33.74,21.56,15.51,17.89,15.78,38.42,9.49,59.78-6.93,23.53-19.86,43.9-34.42,63.28-28.17,37.5-61.61,70-96.61,101-62.86,55.61-130.4,105.14-199.5,152.61-20.57,14.14-41.36,28-62.05,41.92Z" transform="translate(-0.19 0.09)"/></svg>
+        <svg class="papaya-wordmark" x="253" y="225" width="94" height="8.64" viewBox="0 0 500 45.910493"><path d="m 105.70987,45.717591 h 24.11265 V 0 H 115.74073 C 109.76079,0 105.90277,2.5077159 101.85184,5.7870368 97.415115,9.6450613 81.404313,23.53395 81.404313,23.53395 V 0 H 67.129622 C 59.027771,0 54.976845,2.8935184 50.540117,6.3657405 47.260796,8.6805552 0,45.717591 0,45.717591 H 28.742278 L 57.098758,22.376542 V 45.717591 H 80.246905 L 105.70987,22.569444 Z m 52.46913,0 h 38.96605 V 33.950616 h -31.8287 c -2.89352,0 -6.17284,-1.736111 -6.17284,-7.523148 v -0.771605 c 0,-5.208333 2.70061,-7.330246 5.97993,-7.330246 h 32.02161 V 6.3657405 H 157.4074 c -16.20371,0 -22.76235,7.1373455 -22.76235,17.9398145 v 3.665123 c 0,12.731481 7.13735,17.746913 23.53395,17.746913 z m 87.19136,0 V 33.757715 H 226.65894 V 0 h -24.11266 v 45.910492 z m 46.87499,-15.239197 c 0,2.314815 -0.9645,3.665123 -3.6651,3.665123 h -13.11728 c -2.31482,0 -3.66511,-0.771605 -3.66511,-2.314815 0,-1.736111 0.96451,-2.893518 3.66511,-2.893518 h 16.7824 v 1.54321 z m 24.11266,0 v -8.680555 c 0,-9.837963 -6.55862,-15.4320985 -20.44755,-15.4320985 H 252.7006 V 17.746913 h 34.72222 c 3.47223,0 4.82253,1.157407 4.82253,3.858024 v 0.385803 h -27.58487 c -11.57408,0 -15.62502,4.822531 -15.62502,11.188271 v 1.157407 c -0.19292,2.507716 0.77159,5.015432 2.7006,6.751543 3.47222,3.279321 9.83798,4.243827 18.71142,4.243827 h 23.91973 c 15.43218,0.385803 21.9908,-3.086419 21.9908,-14.853394 z m 29.32098,-12.152777 h 15.0463 V 6.3657405 h -30.8642 c -5.01545,0 -8.10185,2.7006171 -8.10185,7.1373455 v 32.407406 h 24.30558 V 18.325617 Z m 62.50002,2.121913 c 0,1.736111 -0.77158,2.700617 -3.47222,2.700617 H 387.5386 v -1.54321 c 0,-2.314814 0.96451,-3.665123 3.6651,-3.665123 h 13.11729 c 2.31479,0 3.85802,0.578704 3.85802,2.507716 z m 22.76231,-0.964506 v -1.54321 c 0,-6.558642 -3.66511,-11.5740735 -20.64043,-11.5740735 h -24.88424 c -15.62502,0 -22.18364,5.4012345 -22.18364,16.9753075 v 6.751543 c 0,9.837963 6.55862,15.625 20.44755,15.625 h 44.17436 V 34.143517 h -35.87963 c -3.47222,0 -4.82253,-0.964506 -4.82253,-3.665123 v -0.385803 h 27.77776 c 10.03088,0 16.0108,-3.27932 16.0108,-10.609567 z m 69.05867,26.234567 v -21.99074 c 0,-13.695987 -6.55862,-17.3611105 -26.23458,-17.3611105 H 435.37808 V 45.910492 h 24.30558 V 19.097221 h 6.55862 c 7.33025,0 9.64506,4.243827 9.64506,8.680556 v 17.939814 z"/></svg>
+      </g>
       <rect x="254" y="176" width="92" height="79.58" fill="transparent" pointer-events="all"/>
     </g>
     <g id="formula" fill="none" stroke="#252d27" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-label="Formula 1"></g>
@@ -382,6 +437,7 @@
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="vegas"><span class="theme-swatch" style="--bezel:#cf3d63;--face:#fff;--markers:#007eb5" aria-hidden="true"></span>Vegas</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="desert-pearl"><span class="theme-swatch" style="--bezel:#741a36;--face:#fff9ed;--markers:#c9aa79" aria-hidden="true"></span>Qatar</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="yas-marina"><span class="theme-swatch" style="--bezel:#08b5c5;--face:#122e49;--markers:#edffff" aria-hidden="true"></span>Abu Dhabi</button>
+  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="papaya"><span class="theme-swatch" style="--bezel:#ff8000;--face:#fff;--markers:#25272b" aria-hidden="true"></span>Papaya</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="classic"><span class="theme-swatch" style="--bezel:#d7202c;--face:#fff;--markers:#28312b" aria-hidden="true"></span>Classic</button>
 </div>
 <script src="races.js"></script>
@@ -682,6 +738,7 @@
     'vegas': { brazil: false, label: 'Vegas' },
     'desert-pearl': { brazil: false, label: 'Qatar' },
     'yas-marina': { brazil: false, label: 'Abu Dhabi' },
+    'papaya': { brazil: false, label: 'Papaya' },
     'classic': { brazil: false, label: 'Classic' }
   };
   function applyRaceTheme(race) {
@@ -695,10 +752,11 @@
     clock.classList.toggle('clock-vegas', id === 'vegas');
     clock.classList.toggle('clock-desert-pearl', id === 'desert-pearl');
     clock.classList.toggle('clock-yas-marina', id === 'yas-marina');
+    clock.classList.toggle('clock-papaya', id === 'papaya');
     selectedTheme = id;
     var dark = clock.classList.contains('clock-dark');
     logo.setAttribute('aria-pressed', String(dark));
-    logo.setAttribute('aria-label', 'TAG Heuer — toggle ' + theme.label + ' Lume mode');
+    logo.setAttribute('aria-label', (id === 'papaya' ? 'McLaren' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
     themeToggle.setAttribute('aria-label', 'Clock themes — ' + theme.label);
     themeOptions.forEach(function (option) {
       option.setAttribute('aria-checked', String(option.dataset.theme === id));

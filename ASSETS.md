@@ -24,3 +24,9 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 ## Race schedule data
 - `races.js`: remaining 2026 F1 weekends, with São Paulo retained for debug previews. Names and F1 session start/end times verified on 2026-11-08 against https://www.formula1.com/en/racing/2026 and each race’s linked full timetable. Exact source URLs are stored with each race.
 - Timestamps are UTC; track dates and times use IANA time zones. Race completion uses the published two-hour race slot, not live results. This is a local schedule snapshot; timetable changes require updating the array.
+
+## Papaya clock branding
+- `assets/mclaren-speedmark.svg`: McLaren Speedmark, sourced from https://commons.wikimedia.org/wiki/File:McLaren_Speedmark.svg (Ved havet).
+- `assets/mclaren-wordmark.svg`: McLaren wordmark, sourced from https://commons.wikimedia.org/wiki/File:McLaren_wordmark.svg (McLaren Group Limited).
+- Both marks are inlined in the Papaya dial for crisp rendering and mode-specific colors. Wikimedia Commons marks these assets as PD-textlogo; trademark rights remain with McLaren.
+- Papaya pairs the approved Papaya Classic light concept with the Silverstone lume concept, including ice-blue lume and a papaya chapter-ring accent.
