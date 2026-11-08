@@ -10,7 +10,7 @@ assert.equal(races.length, 4);
 assert.equal(new Set(races.map(race => race.id)).size, races.length);
 for (let i = 0; i < races.length; i++) {
   const race = races[i];
-  assert.equal(race.defaultTheme, race.id === 'brazil' ? 'brazil' : 'classic');
+  assert.equal(race.defaultTheme, race.id === 'brazil' ? 'brazil' : race.id === 'las-vegas' ? 'vegas' : 'classic');
   assert.equal(race.sessions.length, 5);
   for (let j = 0; j < race.sessions.length; j++) {
     const session = race.sessions[j];

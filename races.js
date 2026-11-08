@@ -18,7 +18,7 @@ var races = [
     ]
   },
   {
-    id: 'las-vegas', round: 21, defaultTheme: 'classic', name: 'Las Vegas Grand Prix',
+    id: 'las-vegas', round: 21, defaultTheme: 'vegas', name: 'Las Vegas Grand Prix',
     officialName: 'FORMULA 1 HEINEKEN LAS VEGAS GRAND PRIX 2026',
     location: 'Las Vegas, United States', timeZone: 'America/Los_Angeles',
     flag: 'assets/united-states.svg', flagAlt: 'United States flag',

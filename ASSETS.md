@@ -4,6 +4,9 @@ Author: TAG Heuer. Vector extracted from Football Federation Australia 2018 Annu
 Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with the owner.
 `tag-heuer-logo-dark.svg` is a local Heritage lume color variant of the same shield, preserving the original geometry with dark green and oxblood panels and mint lettering.
 
+## Vegas dial lettering
+- `#vegas-lettering` in `index.html`: outlined “Fabulous” (Brush Script MT) and “LAS VEGAS” (Arial Black), generated with Core Text from locally installed macOS fonts. The SVG outlines render consistently without loading or distributing font files. Arrangement and light/dark colors follow the user-supplied Vegas references.
+
 ## Race heading
 - `assets/fonts/Michroma-Regular.ttf`: Michroma by Vernon Adams, from https://github.com/google/fonts/tree/main/ofl/michroma. SIL Open Font License included alongside the font.
 - `assets/brazil.svg`: full 10:7 Brazil flag from https://flagcdn.com/br.svg (Flagpedia / FlagCDN). Replaces the cropped 4:3 variant.
