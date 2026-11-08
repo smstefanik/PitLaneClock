@@ -50,8 +50,14 @@
     .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 680px; }
     .debug-panel { display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .debug-panel[hidden] { display: none; }
-    #tag-heuer-logo, #bezel-debug-toggle, #bezel-brazil-toggle { cursor: pointer; }
-    #tag-heuer-logo:focus-visible, #bezel-debug-toggle:focus-visible, #bezel-brazil-toggle:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
+    .race-debug { display: flex; flex-direction: column; gap: 8px; width: min(100%, 420px); }
+    .race-debug label { font-size: 13px; color: #ccc; }
+    .race-debug select { width: 100%; padding: 12px; border: 1px solid #383838; border-radius: 7px; background: #171717; color: #fff; font: inherit; }
+    .race-debug select:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
+    #race-selection-status { margin: 0; color: #999; font-size: 12px; line-height: 1.5; }
+    #season-complete { margin: 16px 0 0; color: #aaa; font-size: 14px; }
+    #tag-heuer-logo, #bezel-debug-toggle, #bezel-theme-toggle { cursor: pointer; }
+    #tag-heuer-logo:focus-visible, #bezel-debug-toggle:focus-visible, #bezel-theme-toggle:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
     .clock-layout > svg * {
       transition: stop-color .6s ease-in-out, fill .6s ease-in-out, stroke .6s ease-in-out, opacity .6s ease-in-out, filter .6s ease-in-out;
     }
@@ -75,7 +81,7 @@
     #tag-heuer-logo .logo-dark { opacity: 0; filter: drop-shadow(0 0 1.3px #a9ffd855); }
     .clock-dark #tag-heuer-logo .logo-light { opacity: 0; }
     .clock-dark #tag-heuer-logo .logo-dark { opacity: 1; }
-    /* Hidden Brazil palette: keep the reference geometry, recolor its materials. */
+    /* Brazil palette: preserve the accepted colors and reference geometry. */
     .clock-brazil #red stop { stop-color: #229e45; }
     .clock-brazil #red stop:nth-child(2) { stop-color: #16843b; }
     .clock-brazil #red stop:nth-child(3) { stop-color: #006b32; }
@@ -105,6 +111,14 @@
     button:hover { background: #292929; }
     button[aria-pressed="true"] { background: #ffffff; color: #111; border-color: #ffffff; }
     button:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
+    .theme-menu { position: fixed; z-index: 10; width: min(264px, calc(100vw - 24px)); padding: 8px; border: 1px solid #38383d; border-radius: 14px; background: #171719; box-shadow: 0 16px 48px #0009; }
+    .theme-menu[hidden] { display: none; }
+    .theme-menu-title { margin: 8px 10px 10px; color: #99999f; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .theme-option { width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 10px; border: 0; background: transparent; text-align: left; font-size: 14px; }
+    .theme-option:hover, .theme-option:focus-visible { background: #29292d; }
+    .theme-option[aria-checked="true"] { background: #252529; }
+    .theme-option[aria-checked="true"]::after { content: "✓"; margin-left: auto; color: #fff; }
+    .theme-swatch { width: 24px; height: 24px; flex-shrink: 0; border: 4px solid var(--bezel); border-radius: 50%; background: var(--face); box-shadow: inset 0 0 0 2px var(--markers); }
     output { font: 14px ui-monospace, monospace; color: #999; text-align: center; min-height: 20px; }
     .hint { color: #555; font-size: 12px; margin: 0; }
   </style>
@@ -124,13 +138,8 @@
     <button class="time-option" data-zone="local" aria-pressed="true"><span>MY TIME</span><time id="local-time">--:--</time></button>
     <button class="time-option" data-zone="track" aria-pressed="false" title="São Paulo, Brazil (GMT−3)"><span>TRACK TIME</span><time id="track-time">--:--</time></button>
   </div>
-  <ol class="sessions">
-    <li class="session" data-start="2026-11-06T15:30:00Z" data-end="2026-11-06T16:30:00Z"><div class="session-date">NOV<span>06</span></div><div><h3>Practice 1</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-11-06T19:00:00Z" data-end="2026-11-06T20:00:00Z"><div class="session-date">NOV<span>06</span></div><div><h3>Practice 2</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-11-07T14:30:00Z" data-end="2026-11-07T15:30:00Z"><div class="session-date">NOV<span>07</span></div><div><h3>Practice 3</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-11-07T18:00:00Z" data-end="2026-11-07T19:00:00Z"><div class="session-date">NOV<span>07</span></div><div><h3>Qualifying</h3><div class="session-time"></div></div></li>
-    <li class="session" data-start="2026-11-08T17:00:00Z" data-end="2026-11-08T19:00:00Z"><div class="session-date">NOV<span>08</span></div><div><h3>Race</h3><div class="session-time"></div></div></li>
-  </ol>
+  <p id="season-complete" hidden>2026 season complete</p>
+  <ol class="sessions"></ol>
   </section>
   <svg class="clock-brazil" viewBox="0 0 600 600" role="group" aria-label="Analog clock">
     <defs>
@@ -190,6 +199,13 @@
   </svg>
   </div>
   <div id="debug-panel" class="debug-panel" hidden>
+  <div class="race-debug">
+    <label for="race-selector">Race weekend</label>
+    <select id="race-selector" aria-describedby="race-selection-status">
+      <option value="auto">Automatic — next race</option>
+    </select>
+    <p id="race-selection-status" role="status"></p>
+  </div>
   <div class="controls" aria-label="Time simulation speed">
     <button data-speed="1" aria-pressed="true">1×</button>
     <button data-speed="10" aria-pressed="false">10×</button>
@@ -210,6 +226,12 @@
   <p class="hint">Time controls are for animation testing · 600× = ten clock minutes per second</p>
   </div>
 </main>
+<div id="theme-menu" class="theme-menu" role="menu" aria-labelledby="theme-menu-title" hidden>
+  <p id="theme-menu-title" class="theme-menu-title">Clock theme</p>
+  <button class="theme-option" role="menuitemradio" aria-checked="true" tabindex="-1" data-theme="brazil"><span class="theme-swatch" style="--bezel:#229e45;--face:#214ca0;--markers:#ffdf00" aria-hidden="true"></span>Brazil</button>
+  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="classic"><span class="theme-swatch" style="--bezel:#d7202c;--face:#fff;--markers:#28312b" aria-hidden="true"></span>Classic</button>
+</div>
+<script src="races.js"></script>
 <script>
   'use strict';
   var awakeButton = document.getElementById('keep-awake');
@@ -269,6 +291,7 @@
   function toggleClockTheme() {
     var dark = logo.ownerSVGElement.classList.toggle('clock-dark');
     logo.setAttribute('aria-pressed', String(dark));
+    selectTheme(selectedTheme);
   }
   function toggleDebugControls() {
     debugPanel.hidden = !debugPanel.hidden;
@@ -282,19 +305,74 @@
     }
   });
   var selectedZone = 'local';
-  var trackFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+  var trackFormatter, trackDateFormatter;
   var localFormatter = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
-  var trackDateFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', month: 'short', day: '2-digit' });
   var localDateFormatter = new Intl.DateTimeFormat('en-GB', { month: 'short', day: '2-digit' });
-  var sessions = Array.from(document.querySelectorAll('.session')).map(function (session) {
-    var time = session.querySelector('.session-time');
-    var range = document.createElement('span');
-    var badge = document.createElement('span');
-    badge.className = 'session-live';
-    badge.textContent = 'LIVE';
-    badge.hidden = true;
-    time.append(range, badge);
-    return { element: session, start: new Date(session.dataset.start), end: new Date(session.dataset.end), range: range, badge: badge };
+  var sessions = [], activeRace = null;
+  var raceSelector = document.getElementById('race-selector');
+  var raceSelectionStatus = document.getElementById('race-selection-status');
+  races.forEach(function (race) {
+    var option = document.createElement('option');
+    option.value = race.id;
+    option.textContent = 'Round ' + race.round + ' — ' + race.name;
+    raceSelector.appendChild(option);
+  });
+  function displayRace(race) {
+    if (activeRace === race) return;
+    if (activeRace && selectedZone === 'track') {
+      zoneTransition = { from: displayedAngles.slice(), start: null, offsets: null };
+    }
+    activeRace = race;
+    document.querySelector('h1').textContent = race.name;
+    document.querySelector('h1').title = race.officialName;
+    var flag = document.querySelector('.race-flag');
+    flag.src = race.flag;
+    flag.alt = race.flagAlt;
+    document.querySelector('[data-zone="track"]').title = race.location + ' (' + race.timeZone + ')';
+    trackFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: race.timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+    trackDateFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: race.timeZone, month: 'short', day: '2-digit' });
+    var list = document.querySelector('.sessions');
+    list.replaceChildren();
+    sessions = race.sessions.map(function (session) {
+      var row = document.createElement('li');
+      row.className = 'session';
+      row.dataset.start = session.start;
+      row.dataset.end = session.end;
+      var sessionDate = document.createElement('div');
+      sessionDate.className = 'session-date';
+      sessionDate.append(document.createTextNode(''), document.createElement('span'));
+      var details = document.createElement('div');
+      var title = document.createElement('h3');
+      title.textContent = session.name;
+      var time = document.createElement('div');
+      time.className = 'session-time';
+      var range = document.createElement('span');
+      var badge = document.createElement('span');
+      badge.className = 'session-live';
+      badge.textContent = 'LIVE';
+      badge.hidden = true;
+      time.append(range, badge);
+      details.append(title, time);
+      row.append(sessionDate, details);
+      list.appendChild(row);
+      return { element: row, start: new Date(session.start), end: new Date(session.end), range: range, badge: badge };
+    });
+    restoreRaceTheme(race);
+    lastStatus = -Infinity;
+  }
+  function synchronizeRace(time) {
+    var automatic = raceSelector.value === 'auto';
+    var next = automaticRaceAt(time);
+    var race = automatic ? (next || races[races.length - 1]) : races.find(function (item) { return item.id === raceSelector.value; });
+    displayRace(race);
+    document.getElementById('season-complete').hidden = !(automatic && !next);
+    var message = automatic ? (next ? 'Following ' + race.name + ' until its final session ends.' : '2026 season complete — showing the final weekend.') :
+      'Previewing ' + race.name + '. Choose Automatic to follow the next race.';
+    if (raceSelectionStatus.textContent !== message) raceSelectionStatus.textContent = message;
+  }
+  raceSelector.addEventListener('change', function () {
+    synchronizeRace(simulatedTime(performance.now()));
+    lastStatus = -Infinity;
   });
   var localTime = document.getElementById('local-time');
   var trackTime = document.getElementById('track-time');
@@ -411,24 +489,106 @@
     });
     element(group,'rect',{x:292,y:52.1,width:16,height:6,fill:'#ffffff',stroke:'none',rx:0.7});
   }
-  var brazilToggle = element(bezelType, 'g', {
-    id:'bezel-brazil-toggle', role:'button', tabindex:'0',
-    'aria-label':'Top triangle — toggle Brazil colors', 'aria-pressed':'true'
+  var themeToggle = element(bezelType, 'g', {
+    id:'bezel-theme-toggle', role:'button', tabindex:'0',
+    'aria-label':'Clock themes — Brazil', 'aria-haspopup':'menu',
+    'aria-controls':'theme-menu', 'aria-expanded':'false'
   });
-  element(brazilToggle, 'rect', {x:272,y:10,width:56,height:42,fill:'transparent',stroke:'none','pointer-events':'all'});
-  element(brazilToggle,'path',{d:'M274 13.55 H326 L300 47.55 Z',fill:'#ffffff',stroke:'none'});
-  element(brazilToggle,'circle',{id:'bezel-triangle-dot',cx:300,cy:25.3,r:9,fill:'#c81b2a',stroke:'none'});
-  function toggleBrazilPalette() {
-    var enabled = brazilToggle.ownerSVGElement.classList.toggle('clock-brazil');
-    brazilToggle.setAttribute('aria-pressed', String(enabled));
+  element(themeToggle, 'rect', {x:272,y:10,width:56,height:42,fill:'transparent',stroke:'none','pointer-events':'all'});
+  element(themeToggle,'path',{d:'M274 13.55 H326 L300 47.55 Z',fill:'#ffffff',stroke:'none'});
+  element(themeToggle,'circle',{id:'bezel-triangle-dot',cx:300,cy:25.3,r:9,fill:'#c81b2a',stroke:'none'});
+  var themeMenu = document.getElementById('theme-menu');
+  var themeOptions = Array.from(themeMenu.querySelectorAll('[data-theme]'));
+  var selectedTheme = 'brazil';
+  var themes = {
+    'brazil': { brazil: true, label: 'Brazil' },
+    'classic': { brazil: false, label: 'Classic' }
+  };
+  function restoreRaceTheme(race) {
+    var id = race.defaultTheme;
+    try { id = localStorage.getItem('pit-lane-clock-theme:' + race.id) || id; } catch (error) { /* Use the race default. */ }
+    selectTheme(Object.prototype.hasOwnProperty.call(themes, id) ? id : race.defaultTheme, false);
   }
-  brazilToggle.addEventListener('click', toggleBrazilPalette);
-  brazilToggle.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' || event.key === ' ') {
+  function selectTheme(id, remember) {
+    if (!Object.prototype.hasOwnProperty.call(themes, id)) return;
+    var theme = themes[id];
+    var clock = themeToggle.ownerSVGElement;
+    clock.classList.toggle('clock-brazil', theme.brazil);
+    selectedTheme = id;
+    var dark = clock.classList.contains('clock-dark');
+    logo.setAttribute('aria-pressed', String(dark));
+    logo.setAttribute('aria-label', 'TAG Heuer — toggle ' + theme.label + ' Lume mode');
+    themeToggle.setAttribute('aria-label', 'Clock themes — ' + theme.label);
+    themeOptions.forEach(function (option) {
+      option.setAttribute('aria-checked', String(option.dataset.theme === id));
+    });
+    try {
+      if (activeRace && remember !== false) localStorage.setItem('pit-lane-clock-theme:' + activeRace.id, id);
+      localStorage.setItem('pit-lane-clock-lume', String(dark));
+    } catch (error) { /* Storage may be unavailable. */ }
+  }
+  function positionThemeMenu() {
+    var anchor = themeToggle.getBoundingClientRect();
+    var width = themeMenu.offsetWidth, height = themeMenu.offsetHeight;
+    var left = Math.max(12, Math.min(anchor.left + anchor.width / 2 - width / 2, window.innerWidth - width - 12));
+    var top = anchor.bottom + 12;
+    if (top + height > window.innerHeight - 12) top = Math.max(12, anchor.top - height - 12);
+    themeMenu.style.left = left + 'px';
+    themeMenu.style.top = top + 'px';
+  }
+  function closeThemeMenu(restoreFocus) {
+    themeMenu.hidden = true;
+    themeToggle.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) themeToggle.focus();
+  }
+  function openThemeMenu() {
+    themeMenu.hidden = false;
+    themeToggle.setAttribute('aria-expanded', 'true');
+    positionThemeMenu();
+    themeMenu.querySelector('[aria-checked="true"]').focus();
+  }
+  themeToggle.addEventListener('click', function () {
+    if (themeMenu.hidden) openThemeMenu();
+    else closeThemeMenu(true);
+  });
+  themeToggle.addEventListener('keydown', function (event) {
+    if (['Enter', ' ', 'ArrowDown', 'ArrowUp'].includes(event.key)) {
       event.preventDefault();
-      toggleBrazilPalette();
+      openThemeMenu();
     }
   });
+  themeOptions.forEach(function (option) {
+    option.addEventListener('click', function () {
+      selectTheme(option.dataset.theme);
+      closeThemeMenu(true);
+    });
+  });
+  themeMenu.addEventListener('keydown', function (event) {
+    var index = themeOptions.indexOf(document.activeElement);
+    if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+      event.preventDefault();
+      var next = event.key === 'Home' ? 0 : event.key === 'End' ? themeOptions.length - 1 :
+        (index + (event.key === 'ArrowDown' ? 1 : -1) + themeOptions.length) % themeOptions.length;
+      themeOptions[next].focus();
+    }
+  });
+  document.addEventListener('keydown', function (event) {
+    if (!themeMenu.hidden && event.key === 'Escape') {
+      event.preventDefault();
+      closeThemeMenu(true);
+    }
+  });
+  document.addEventListener('pointerdown', function (event) {
+    if (!themeMenu.hidden && !themeMenu.contains(event.target) && !themeToggle.contains(event.target)) closeThemeMenu(false);
+  });
+  document.addEventListener('focusin', function (event) {
+    if (!themeMenu.hidden && !themeMenu.contains(event.target) && !themeToggle.contains(event.target)) closeThemeMenu(false);
+  });
+  window.addEventListener('resize', function () { if (!themeMenu.hidden) positionThemeMenu(); });
+  window.addEventListener('scroll', function () { if (!themeMenu.hidden) positionThemeMenu(); }, true);
+  try {
+    themeToggle.ownerSVGElement.classList.toggle('clock-dark', localStorage.getItem('pit-lane-clock-lume') === 'true');
+  } catch (error) { /* Use light mode by default. */ }
   element(bezelType,'rect',{x:292,y:52.1,width:16,height:6,fill:'#ffffff',stroke:'none',rx:0.7});
   var formulaLetters = lettering(document.getElementById('formula'),'FORMULA 1',204,378,0.78,32);
   formulaLetters.setAttribute('transform','translate(203.42 378) scale(.78 .62)');
@@ -483,6 +643,7 @@
   };
   function frame(tick) {
     var date = new Date(simulatedTime(tick));
+    if (tick - lastStatus > 100 || !activeRace) synchronizeRace(date.getTime());
     var trackParts = {};
     trackFormatter.formatToParts(date).forEach(function (part) { trackParts[part.type] = part.value; });
     var displayHour = selectedZone === 'track' ? Number(trackParts.hour) : date.getHours();

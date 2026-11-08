@@ -14,3 +14,10 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 
 ## Formula 1 logo
 - `assets/formula-1-logo.svg`: Formula One logo by Liberty Media, from https://commons.wikimedia.org/wiki/File:Formula_One_logo.svg. Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with the owner.
+
+## Additional race flags
+- `assets/united-states.svg`, `assets/qatar.svg`, and `assets/united-arab-emirates.svg`: country flags from https://flagcdn.com/us.svg, https://flagcdn.com/qa.svg, and https://flagcdn.com/ae.svg (Flagpedia / FlagCDN), matching the Brazil flag source.
+
+## Race schedule data
+- `races.js`: remaining 2026 F1 weekends, with São Paulo retained for debug previews. Names and F1 session start/end times verified on 2026-11-08 against https://www.formula1.com/en/racing/2026 and each race’s linked full timetable. Exact source URLs are stored with each race.
+- Timestamps are UTC; track dates and times use IANA time zones. Race completion uses the published two-hour race slot, not live results. This is a local schedule snapshot; timetable changes require updating the array.
