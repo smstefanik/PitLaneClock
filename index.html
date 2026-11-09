@@ -477,6 +477,7 @@
     .theme-menu-title { margin: 8px 10px 10px; color: #99999f; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
     .theme-section-title { margin-top: 12px; padding-top: 14px; border-top: 1px solid #38383d; }
     .theme-option { width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 10px; border: 0; background: transparent; text-align: left; font-size: 14px; }
+    .theme-option[hidden] { display: none; }
     .theme-option:hover, .theme-option:focus-visible { background: #29292d; }
     .theme-option[aria-checked="true"] { background: #252529; }
     .theme-option[aria-checked="true"]::after { content: "✓"; margin-left: auto; color: #fff; }
@@ -707,6 +708,8 @@
   function toggleDebugControls() {
     debugPanel.hidden = !debugPanel.hidden;
     document.getElementById('bezel-debug-toggle').setAttribute('aria-expanded', String(!debugPanel.hidden));
+    if (debugPanel.hidden && activeRace) selectTheme(activeRace.defaultTheme);
+    updateThemeVisibility();
   }
   logo.addEventListener('click', toggleClockTheme);
   logo.addEventListener('keydown', function (event) {
@@ -936,6 +939,16 @@
   };
   function applyRaceTheme(race) {
     selectTheme(race.defaultTheme);
+    updateThemeVisibility();
+  }
+  function updateThemeVisibility() {
+    themeOptions.forEach(function (option) {
+      option.hidden = debugPanel.hidden && (!activeRace || option.dataset.theme !== activeRace.defaultTheme);
+    });
+    themeMenu.querySelectorAll('[role="group"]').forEach(function (group) {
+      group.hidden = !Array.from(group.querySelectorAll('[data-theme]')).some(function (option) { return !option.hidden; });
+    });
+    if (!themeMenu.hidden) positionThemeMenu();
   }
   function selectTheme(id) {
     if (!Object.prototype.hasOwnProperty.call(themes, id)) return;
@@ -995,12 +1008,13 @@
     });
   });
   themeMenu.addEventListener('keydown', function (event) {
-    var index = themeOptions.indexOf(document.activeElement);
+    var visibleOptions = themeOptions.filter(function (option) { return !option.hidden; });
+    var index = visibleOptions.indexOf(document.activeElement);
     if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
       event.preventDefault();
-      var next = event.key === 'Home' ? 0 : event.key === 'End' ? themeOptions.length - 1 :
-        (index + (event.key === 'ArrowDown' ? 1 : -1) + themeOptions.length) % themeOptions.length;
-      themeOptions[next].focus();
+      var next = event.key === 'Home' ? 0 : event.key === 'End' ? visibleOptions.length - 1 :
+        (index + (event.key === 'ArrowDown' ? 1 : -1) + visibleOptions.length) % visibleOptions.length;
+      if (visibleOptions[next]) visibleOptions[next].focus();
     }
   });
   document.addEventListener('keydown', function (event) {
