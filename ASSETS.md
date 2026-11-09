@@ -35,3 +35,11 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 - `assets/ferrari-shield.svg`: shield extracted from https://upload.wikimedia.org/wikipedia/en/d/df/Scuderia_Ferrari_HP_logo_24.svg (https://en.wikipedia.org/wiki/File:Scuderia_Ferrari_HP_logo_24.svg). Sponsor marks are outside the extracted shield group. Ferrari trademark rights remain with their owner.
 - `assets/ferrari-shield-lume.svg`: local mint-on-dark lume color variant using the same shield geometry.
 - Scuderia pairs the selected Rosso Corsa concept (red dial, yellow bezel with charcoal numerals, ivory markers, yellow seconds hand) with an oxblood night dial, mint lume, muted gold bezel with ivory lettering and yellow seconds hand. The dial wordmark uses the existing Formula1 font.
+
+## RBR clock branding
+- `assets/red-bull-racing-logo.svg`: official Red Bull Racing logo downloaded from https://www.redbullracing.com/_next/static/media/ORBR_logo_2026.4059dac5.svg, linked by https://www.redbullracing.com/. Trademark rights remain with Red Bull and the respective owners.
+- RBR pairs the selected Yellow Apex day concept (yellow bezel, navy dial, white markers, red seconds hand) with Night Stint lume (navy bezel and dial, ice-blue markers and numerals, red seconds hand). Both preserve the reference clock geometry.
+
+- RBR dial logo locally omits the Oracle wordmark and crops its empty space; the remaining Red Bull Racing artwork is preserved. The lower dial uses the original Formula 1 lettering in both modes.
+
+- RBR logo is arranged vertically to match the supplied reference: gold-outlined bulls and sun, red Red Bull wordmark, then white RACING lettering; separator/underline paths are omitted.

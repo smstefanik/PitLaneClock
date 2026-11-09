@@ -362,9 +362,64 @@
     button:hover { background: #292929; }
     button[aria-pressed="true"] { background: #ffffff; color: #111; border-color: #ffffff; }
     button:focus-visible { outline: 2px solid #ff3a3a; outline-offset: 3px; }
+    /* RBR: Yellow Apex day face paired with Night Stint ice-blue lume. */
+    .rbr-only { display: none; }
+    .clock-rbr .rbr-only { display: inline; }
+    .clock-rbr #formula path { stroke: #f5fbff; }
+    #tag-heuer-logo .rbr-badge { opacity: 0; }
+    .clock-rbr #tag-heuer-logo > image[class], .clock-rbr.clock-dark #tag-heuer-logo > image[class] { opacity: 0; }
+    .clock-rbr #tag-heuer-logo > image.rbr-badge, .clock-rbr.clock-dark #tag-heuer-logo > image.rbr-badge { opacity: 1; }
+    .clock-rbr #red stop { stop-color: #ffe95a; }
+    .clock-rbr #red stop:nth-child(2) { stop-color: #fcd700; }
+    .clock-rbr #red stop:nth-child(3) { stop-color: #dbaa00; }
+    .clock-rbr #red stop:last-child { stop-color: #ffdf20; }
+    .clock-rbr #bezel > path:first-child { stroke: #ceaa00; }
+    .clock-rbr #facet stop { stop-color: #a97e00; }
+    .clock-rbr #facet-light stop { stop-color: #fff7af; }
+    .clock-rbr #dial stop, .clock-rbr #dial-center stop { stop-color: #101e38; }
+    .clock-rbr #dial stop:last-child, .clock-rbr #dial-center stop:last-child { stop-color: #081226; }
+    .clock-rbr .dial-track { fill: #061024; }
+    .clock-rbr #lume stop { stop-color: #f5fbff; }
+    .clock-rbr #lume stop:last-child { stop-color: #dce8ed; }
+    .clock-rbr #indices { stroke: #203651; }
+    .clock-rbr #indices [stroke="#ffffff"] { stroke: #101e38; }
+    .clock-rbr #bezel > circle, .clock-rbr #bezel-type [fill="#ffffff"] { fill: #101e38; }
+    .clock-rbr #bezel-theme-toggle > path.standard-bezel-marker { fill: #f5fbff; }
+    .clock-rbr #bezel-triangle-dot { fill: #101e38; }
+    .clock-rbr #hour > path:first-child, .clock-rbr #minute > path:first-child { fill: #10203c; stroke: #71899d; }
+    .clock-rbr #hour circle, .clock-rbr #hour path[fill="none"] { stroke: #203651; }
+    .clock-rbr #second path { fill: #ea1d2d; stroke: #ea1d2d; }
+    .clock-rbr .hand-cap { fill: #101a2c; stroke: #52657b; }
+    .rbr-ring { fill: none; stroke: #ea1d2d; stroke-width: 3; pointer-events: none; }
+    .clock-rbr.clock-dark #red stop { stop-color: #14223b; }
+    .clock-rbr.clock-dark #red stop:nth-child(2) { stop-color: #0a1427; }
+    .clock-rbr.clock-dark #red stop:nth-child(3) { stop-color: #050c1c; }
+    .clock-rbr.clock-dark #red stop:last-child { stop-color: #101c32; }
+    .clock-rbr.clock-dark #bezel > path:first-child { stroke: #253c57; }
+    .clock-rbr.clock-dark #facet stop { stop-color: #020715; }
+    .clock-rbr.clock-dark #facet-light stop { stop-color: #46617d; }
+    .clock-rbr.clock-dark #dial stop, .clock-rbr.clock-dark #dial-center stop { stop-color: #080f21; }
+    .clock-rbr.clock-dark .dial-track { fill: #050d1c; }
+    .clock-rbr.clock-dark #lume stop { stop-color: #b9f8ff; }
+    .clock-rbr.clock-dark #lume stop:last-child { stop-color: #78deef; }
+    .clock-rbr.clock-dark #indices { stroke: #29475b; }
+    .clock-rbr.clock-dark #indices [stroke="#ffffff"] { stroke: #080f21; }
+    .clock-rbr.clock-dark #bezel > circle, .clock-rbr.clock-dark #bezel-type [fill="#ffffff"] { fill: #9aefff; }
+    .clock-rbr.clock-dark #bezel > circle, .clock-rbr.clock-dark #bezel-type [fill="#ffffff"] { filter: drop-shadow(0 0 2px #78deef88); }
+    .clock-rbr.clock-dark #bezel-theme-toggle > path.standard-bezel-marker { fill: #9aefff; }
+    .clock-rbr.clock-dark #bezel-triangle-dot { fill: #14223b; }
+    .clock-rbr.clock-dark #hour > path:first-child, .clock-rbr.clock-dark #minute > path:first-child { fill: #111f30; stroke: #416079; }
+    .clock-rbr.clock-dark #hour circle, .clock-rbr.clock-dark #hour path[fill="none"] { stroke: #29475b; }
+    .clock-rbr.clock-dark #marks, .clock-rbr.clock-dark #indices, .clock-rbr.clock-dark #hour, .clock-rbr.clock-dark #minute { filter: drop-shadow(0 0 3.5px #78deef88); }
+    .clock-rbr.clock-dark #second path { fill: #ff263d; stroke: #ff263d; }
+    .clock-rbr.clock-dark #second { filter: drop-shadow(0 0 2px #ff263d55); }
+    .clock-rbr.clock-dark .hand-cap { fill: #0b1627; stroke: #35516a; }
+    .clock-rbr.clock-dark .rbr-ring { stroke: #263b55; stroke-width: 1.5; }
+    .clock-rbr.clock-dark #formula path { stroke: #b3d7e6; }
     .theme-menu { position: fixed; z-index: 10; width: min(264px, calc(100vw - 24px)); padding: 8px; border: 1px solid #38383d; border-radius: 14px; background: #171719; box-shadow: 0 16px 48px #0009; }
     .theme-menu[hidden] { display: none; }
     .theme-menu-title { margin: 8px 10px 10px; color: #99999f; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .theme-section-title { margin-top: 12px; padding-top: 14px; border-top: 1px solid #38383d; }
     .theme-option { width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 10px; border: 0; background: transparent; text-align: left; font-size: 14px; }
     .theme-option:hover, .theme-option:focus-visible { background: #29292d; }
     .theme-option[aria-checked="true"] { background: #252529; }
@@ -421,10 +476,12 @@
     </g>
     <circle class="papaya-only papaya-ring" cx="300" cy="300" r="217"/>
     <circle class="scuderia-only scuderia-ring" cx="300" cy="300" r="231"/>
+    <circle class="rbr-only rbr-ring" cx="300" cy="300" r="233"/>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
     <g id="tag-heuer-logo" role="button" tabindex="0" aria-label="TAG Heuer — Heritage lume dark face" aria-pressed="false">
+      <image class="rbr-badge" href="assets/red-bull-racing-logo.svg" x="244" y="169" width="112" height="84" aria-hidden="true" pointer-events="none"/>
       <image class="logo-light" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-dark" href="tag-heuer-logo-dark.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-pearl" href="tag-heuer-logo-pearl.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
@@ -498,13 +555,17 @@
 </main>
 <div id="theme-menu" class="theme-menu" role="menu" aria-labelledby="theme-menu-title" hidden>
   <p id="theme-menu-title" class="theme-menu-title">Clock theme</p>
+  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="classic"><span class="theme-swatch" style="--bezel:#d7202c;--face:#fff;--markers:#28312b" aria-hidden="true"></span>Classic</button>
   <button class="theme-option" role="menuitemradio" aria-checked="true" tabindex="-1" data-theme="brazil"><span class="theme-swatch" style="--bezel:#229e45;--face:#214ca0;--markers:#ffdf00" aria-hidden="true"></span>Brazil</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="vegas"><span class="theme-swatch" style="--bezel:#cf3d63;--face:#fff;--markers:#007eb5" aria-hidden="true"></span>Vegas</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="desert-pearl"><span class="theme-swatch" style="--bezel:#741a36;--face:#fff9ed;--markers:#c9aa79" aria-hidden="true"></span>Qatar</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="yas-marina"><span class="theme-swatch" style="--bezel:#08b5c5;--face:#122e49;--markers:#edffff" aria-hidden="true"></span>Abu Dhabi</button>
-  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="papaya"><span class="theme-swatch" style="--bezel:#ff8000;--face:#fff;--markers:#25272b" aria-hidden="true"></span>Papaya</button>
-  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="scuderia"><span class="theme-swatch" style="--bezel:#ffcf00;--face:#d51119;--markers:#fffef5" aria-hidden="true"></span>Scuderia</button>
-  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="classic"><span class="theme-swatch" style="--bezel:#d7202c;--face:#fff;--markers:#28312b" aria-hidden="true"></span>Classic</button>
+  <div role="group" aria-labelledby="team-theme-title">
+    <p id="team-theme-title" class="theme-menu-title theme-section-title">TEAM</p>
+    <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="papaya"><span class="theme-swatch" style="--bezel:#ff8000;--face:#fff;--markers:#25272b" aria-hidden="true"></span>Papaya</button>
+    <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="scuderia"><span class="theme-swatch" style="--bezel:#ffcf00;--face:#d51119;--markers:#fffef5" aria-hidden="true"></span>Scuderia</button>
+    <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="rbr"><span class="theme-swatch" style="--bezel:#fcd700;--face:#101e38;--markers:#f5fbff" aria-hidden="true"></span>RBR</button>
+  </div>
 </div>
 <script src="races.js"></script>
 <script>
@@ -806,6 +867,7 @@
     'yas-marina': { brazil: false, label: 'Abu Dhabi' },
     'papaya': { brazil: false, label: 'Papaya' },
     'scuderia': { brazil: false, label: 'Scuderia' },
+    'rbr': { brazil: false, label: 'RBR' },
     'classic': { brazil: false, label: 'Classic' }
   };
   function applyRaceTheme(race) {
@@ -821,10 +883,11 @@
     clock.classList.toggle('clock-yas-marina', id === 'yas-marina');
     clock.classList.toggle('clock-papaya', id === 'papaya');
     clock.classList.toggle('clock-scuderia', id === 'scuderia');
+    clock.classList.toggle('clock-rbr', id === 'rbr');
     selectedTheme = id;
     var dark = clock.classList.contains('clock-dark');
     logo.setAttribute('aria-pressed', String(dark));
-    logo.setAttribute('aria-label', (id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
+    logo.setAttribute('aria-label', (id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : id === 'rbr' ? 'Red Bull Racing' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
     themeToggle.setAttribute('aria-label', 'Clock themes — ' + theme.label);
     themeOptions.forEach(function (option) {
       option.setAttribute('aria-checked', String(option.dataset.theme === id));
