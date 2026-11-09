@@ -43,3 +43,8 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 - RBR dial logo locally omits the Oracle wordmark and crops its empty space; the remaining Red Bull Racing artwork is preserved. The lower dial uses the original Formula 1 lettering in both modes.
 
 - RBR logo is arranged vertically to match the supplied reference: gold-outlined bulls and sun, red Red Bull wordmark, then white RACING lettering; separator/underline paths are omitted.
+
+## Silver Arrow clock theme
+- Pairs the selected Turquoise Apex day mockup with Midnight Petronas inspired lume: turquoise bezel, black dial, silver marker surrounds and turquoise seconds hand by day; black bezel, pale aqua lume, turquoise chapter ring and minute accents at night.
+- Mercedes star is drawn inline with SVG geometry, with the wordmark set in the existing Formula1 font. Mercedes trademark rights remain with their owner.
+- Theme is listed as Silver Arrow in the Team menu and uses the existing logo click/keyboard lume toggle.

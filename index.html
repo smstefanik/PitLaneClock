@@ -416,6 +416,62 @@
     .clock-rbr.clock-dark .hand-cap { fill: #0b1627; stroke: #35516a; }
     .clock-rbr.clock-dark .rbr-ring { stroke: #263b55; stroke-width: 1.5; }
     .clock-rbr.clock-dark #formula path { stroke: #b3d7e6; }
+    /* Silver Arrow: Turquoise Apex day paired with Midnight Petronas lume. */
+    .silver-arrow-only { display: none; }
+    .clock-silver-arrow .silver-arrow-only { display: inline; }
+    .clock-silver-arrow #tag-heuer-logo > image[class], .clock-silver-arrow.clock-dark #tag-heuer-logo > image[class] { opacity: 0; }
+    .clock-silver-arrow #red stop { stop-color: #19d4cc; }
+    .clock-silver-arrow #red stop:nth-child(2) { stop-color: #00b9b3; }
+    .clock-silver-arrow #red stop:nth-child(3) { stop-color: #008b89; }
+    .clock-silver-arrow #red stop:last-child { stop-color: #08c5bd; }
+    .clock-silver-arrow #bezel > path:first-child { stroke: #007b79; }
+    .clock-silver-arrow #facet stop { stop-color: #004f50; }
+    .clock-silver-arrow #facet-light stop { stop-color: #9ffff4; }
+    .clock-silver-arrow #dial stop, .clock-silver-arrow #dial-center stop { stop-color: #171b1d; }
+    .clock-silver-arrow #dial stop:last-child, .clock-silver-arrow #dial-center stop:last-child { stop-color: #080b0d; }
+    .clock-silver-arrow .dial-track { fill: #080d10; }
+    .clock-silver-arrow #lume stop { stop-color: #ffffff; }
+    .clock-silver-arrow #lume stop:last-child { stop-color: #e3eeee; }
+    .clock-silver-arrow #indices { stroke: #aebfc3; }
+    .clock-silver-arrow #indices [stroke="#ffffff"] { stroke: #455357; }
+    .clock-silver-arrow #bezel > circle, .clock-silver-arrow #bezel-type [fill="#ffffff"] { fill: #f6ffff; }
+    .clock-silver-arrow #bezel-triangle-dot { fill: #00a6a3; }
+    .clock-silver-arrow #formula path { stroke: #edf5f5; }
+    .clock-silver-arrow #hour > path:first-child, .clock-silver-arrow #minute > path:first-child { fill: #bbc9cc; stroke: #536167; }
+    .clock-silver-arrow #hour circle, .clock-silver-arrow #hour path[fill="none"] { stroke: #697a80; }
+    .clock-silver-arrow #second path { fill: #00d2c5; stroke: #00b8b4; }
+    .clock-silver-arrow .hand-cap { fill: #141c20; stroke: #66777b; }
+    .silver-arrow-badge { fill: #d9e5e7; }
+    .silver-arrow-star-ring { fill: none; stroke: #d9e5e7; stroke-width: 1.6; }
+    .silver-arrow-wordmark { font: 400 8.5px Formula1, sans-serif; letter-spacing: 2px; }
+    .silver-arrow-ring { fill: none; stroke: #b2c3c6; stroke-width: 1.6; pointer-events: none; }
+    .clock-silver-arrow.clock-dark #red stop { stop-color: #192124; }
+    .clock-silver-arrow.clock-dark #red stop:nth-child(2) { stop-color: #101619; }
+    .clock-silver-arrow.clock-dark #red stop:nth-child(3) { stop-color: #070b0d; }
+    .clock-silver-arrow.clock-dark #red stop:last-child { stop-color: #172023; }
+    .clock-silver-arrow.clock-dark #bezel > path:first-child { stroke: #344348; }
+    .clock-silver-arrow.clock-dark #facet stop { stop-color: #010405; }
+    .clock-silver-arrow.clock-dark #facet-light stop { stop-color: #607277; }
+    .clock-silver-arrow.clock-dark #dial stop, .clock-silver-arrow.clock-dark #dial-center stop { stop-color: #080e10; }
+    .clock-silver-arrow.clock-dark #dial stop:last-child, .clock-silver-arrow.clock-dark #dial-center stop:last-child { stop-color: #030708; }
+    .clock-silver-arrow.clock-dark .dial-track { fill: #0c171a; }
+    .clock-silver-arrow.clock-dark #lume stop { stop-color: #e1fff5; }
+    .clock-silver-arrow.clock-dark #lume stop:last-child { stop-color: #a6eddd; }
+    .clock-silver-arrow.clock-dark #indices { stroke: #536e70; }
+    .clock-silver-arrow.clock-dark #indices [stroke="#ffffff"] { stroke: #080e10; }
+    .clock-silver-arrow.clock-dark #marks rect { fill: #00d2c5; }
+    .clock-silver-arrow.clock-dark #bezel > circle, .clock-silver-arrow.clock-dark #bezel-type [fill="#ffffff"] { fill: #cce7e2; }
+    .clock-silver-arrow.clock-dark #bezel-triangle-dot { fill: #192124; }
+    .clock-silver-arrow.clock-dark #formula path { stroke: #bedbd5; }
+    .clock-silver-arrow.clock-dark #hour > path:first-child, .clock-silver-arrow.clock-dark #minute > path:first-child { fill: #172327; stroke: #52696d; }
+    .clock-silver-arrow.clock-dark #hour circle, .clock-silver-arrow.clock-dark #hour path[fill="none"] { stroke: #30484d; }
+    .clock-silver-arrow.clock-dark #marks, .clock-silver-arrow.clock-dark #indices, .clock-silver-arrow.clock-dark #hour, .clock-silver-arrow.clock-dark #minute { filter: drop-shadow(0 0 3px #a6eddd66); }
+    .clock-silver-arrow.clock-dark #second path { fill: #00e0d0; stroke: #00d2c5; }
+    .clock-silver-arrow.clock-dark #second { filter: drop-shadow(0 0 2px #00d2c566); }
+    .clock-silver-arrow.clock-dark .hand-cap { fill: #101a1d; stroke: #4e686a; }
+    .clock-silver-arrow.clock-dark .silver-arrow-ring { stroke: #00d2c5; filter: drop-shadow(0 0 1.5px #00d2c566); }
+    .clock-silver-arrow.clock-dark .silver-arrow-badge { fill: #cce7e2; filter: drop-shadow(0 0 1px #a6eddd44); }
+    .clock-silver-arrow.clock-dark .silver-arrow-star-ring { stroke: #cce7e2; }
     .theme-menu { position: fixed; z-index: 10; width: min(264px, calc(100vw - 24px)); padding: 8px; border: 1px solid #38383d; border-radius: 14px; background: #171719; box-shadow: 0 16px 48px #0009; }
     .theme-menu[hidden] { display: none; }
     .theme-menu-title { margin: 8px 10px 10px; color: #99999f; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -477,10 +533,16 @@
     <circle class="papaya-only papaya-ring" cx="300" cy="300" r="217"/>
     <circle class="scuderia-only scuderia-ring" cx="300" cy="300" r="231"/>
     <circle class="rbr-only rbr-ring" cx="300" cy="300" r="233"/>
+    <circle class="silver-arrow-only silver-arrow-ring" cx="300" cy="300" r="233"/>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
     <g id="tag-heuer-logo" role="button" tabindex="0" aria-label="TAG Heuer — Heritage lume dark face" aria-pressed="false">
+      <g class="silver-arrow-only silver-arrow-badge" aria-hidden="true" pointer-events="none">
+        <circle class="silver-arrow-star-ring" cx="300" cy="204" r="25"/>
+        <path d="M300 179 L303.4 201.9 L321.65 216.5 L300 208 L278.35 216.5 L296.6 201.9 Z"/>
+        <text class="silver-arrow-wordmark" x="301" y="246" text-anchor="middle">MERCEDES</text>
+      </g>
       <image class="rbr-badge" href="assets/red-bull-racing-logo.svg" x="244" y="169" width="112" height="84" aria-hidden="true" pointer-events="none"/>
       <image class="logo-light" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-dark" href="tag-heuer-logo-dark.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
@@ -565,6 +627,7 @@
     <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="papaya"><span class="theme-swatch" style="--bezel:#ff8000;--face:#fff;--markers:#25272b" aria-hidden="true"></span>Papaya</button>
     <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="scuderia"><span class="theme-swatch" style="--bezel:#ffcf00;--face:#d51119;--markers:#fffef5" aria-hidden="true"></span>Scuderia</button>
     <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="rbr"><span class="theme-swatch" style="--bezel:#fcd700;--face:#101e38;--markers:#f5fbff" aria-hidden="true"></span>RBR</button>
+    <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="silver-arrow"><span class="theme-swatch" style="--bezel:#00b9b3;--face:#101719;--markers:#e3eeee" aria-hidden="true"></span>Silver Arrow</button>
   </div>
 </div>
 <script src="races.js"></script>
@@ -868,6 +931,7 @@
     'papaya': { brazil: false, label: 'Papaya' },
     'scuderia': { brazil: false, label: 'Scuderia' },
     'rbr': { brazil: false, label: 'RBR' },
+    'silver-arrow': { brazil: false, label: 'Silver Arrow' },
     'classic': { brazil: false, label: 'Classic' }
   };
   function applyRaceTheme(race) {
@@ -884,10 +948,11 @@
     clock.classList.toggle('clock-papaya', id === 'papaya');
     clock.classList.toggle('clock-scuderia', id === 'scuderia');
     clock.classList.toggle('clock-rbr', id === 'rbr');
+    clock.classList.toggle('clock-silver-arrow', id === 'silver-arrow');
     selectedTheme = id;
     var dark = clock.classList.contains('clock-dark');
     logo.setAttribute('aria-pressed', String(dark));
-    logo.setAttribute('aria-label', (id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : id === 'rbr' ? 'Red Bull Racing' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
+    logo.setAttribute('aria-label', (id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : id === 'rbr' ? 'Red Bull Racing' : id === 'silver-arrow' ? 'Mercedes' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
     themeToggle.setAttribute('aria-label', 'Clock themes — ' + theme.label);
     themeOptions.forEach(function (option) {
       option.setAttribute('aria-checked', String(option.dataset.theme === id));
