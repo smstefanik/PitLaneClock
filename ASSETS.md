@@ -5,6 +5,7 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 `tag-heuer-logo-dark.svg` is a local Heritage lume color variant of the same shield, preserving the original geometry with dark green and oxblood panels and mint lettering.
 
 ## Vegas dial lettering
+- Light mode uses a red bezel, warm ivory dial and yellow marquee band with white round bulb markers, plus white suits outlined in black and blue “Fabulous” lettering. Lume retains its neon pink, cyan and fluorescent yellow palette.
 - `tag-heuer-logo-vegas-lume.svg`: local color variant of the original TAG Heuer shield with cyan TAG lettering, pink HEUER lettering, a white outline and dark panels, matching the Vegas lume palette while preserving the logo geometry.
 - `#vegas-lettering` in `index.html`: outlined “Fabulous” (Brush Script MT) and “LAS VEGAS” (Arial Black), generated with Core Text from locally installed macOS fonts. The SVG outlines render consistently without loading or distributing font files. Arrangement and light/dark colors follow the user-supplied Vegas references.
 

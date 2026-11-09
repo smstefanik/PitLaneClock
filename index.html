@@ -107,21 +107,27 @@
     .clock-brazil.clock-dark #red stop:nth-child(even) { stop-color: #075227; }
     .clock-brazil.clock-dark #marks, .clock-brazil.clock-dark #indices, .clock-brazil.clock-dark #hour, .clock-brazil.clock-dark #minute { filter: drop-shadow(0 0 5px #ffdf0066); }
     .clock-brazil.clock-dark #second { filter: drop-shadow(0 0 2.5px #ffdf0055); }
-    /* Vegas changes paint only, except the four suits and twelve-o'clock star. */
+    /* Vegas sign palette, quarter-hour suits, star and marquee bulbs. */
     .vegas-only { display: none; }
     .clock-vegas .vegas-only { display: inline; }
     .clock-vegas .standard-quarter, .clock-vegas .standard-bezel-marker { display: none; }
-    .clock-vegas #red stop { stop-color: #e85c81; }
-    .clock-vegas #red stop:nth-child(2) { stop-color: #cf3d63; }
-    .clock-vegas #red stop:nth-child(3) { stop-color: #b82b50; }
-    .clock-vegas #bezel > path:first-child { stroke: #ad294b; }
-    .clock-vegas #facet stop { stop-color: #7b1535; }
-    .clock-vegas #facet-light stop { stop-color: #ffb0c7; }
-    .clock-vegas #dial stop, .clock-vegas #dial-center stop { stop-color: #ffffff; }
+    .clock-vegas #red stop { stop-color: #ff4941; }
+    .clock-vegas #red stop:nth-child(2) { stop-color: #ed242b; }
+    .clock-vegas #red stop:nth-child(3) { stop-color: #b51022; }
+    .clock-vegas #bezel > path:first-child { stroke: #a61220; }
+    .clock-vegas #facet stop { stop-color: #760d17; }
+    .clock-vegas #facet-light stop { stop-color: #ffb1a0; }
+    .clock-vegas #dial stop, .clock-vegas #dial-center stop { stop-color: #fff8e9; }
     .clock-vegas .dial-track { fill: #f7bc27; }
     .clock-vegas #lume stop { stop-color: #ffffff; }
     .clock-vegas #marks > * { fill: #ffffff; }
-    .clock-vegas #indices { fill: #ffffff; stroke: #000000; }
+    .vegas-marquee-bulb { display: none; }
+    .clock-vegas:not(.clock-dark) #marks > rect { display: none; }
+    .clock-vegas:not(.clock-dark) #marks > .vegas-marquee-bulb { display: inline; }
+    .clock-vegas:not(.clock-dark) #marks > circle { stroke: #cf941b; stroke-width: .8; }
+    /* Paint shapes directly so nested suits and dots transition together. */
+    .clock-vegas #indices > circle,
+    .clock-vegas #indices > .vegas-only > path { fill: #ffffff; stroke: #000000; }
     .clock-vegas #formula { display: none; }
     .clock-vegas .vegas-fabulous { fill: #07529b; }
     .clock-vegas .vegas-city { fill: #ed242b; }
@@ -139,7 +145,9 @@
     .clock-vegas.clock-dark .dial-track { fill: #efff00; }
     .clock-vegas.clock-dark #marks > * { fill: #030405; }
     .clock-vegas.clock-dark #marks { filter: none; }
-    .clock-vegas.clock-dark #indices { fill: #00baff; stroke: #ffffff; filter: drop-shadow(0 0 3px #00baffcc); }
+    .clock-vegas.clock-dark #indices > circle,
+    .clock-vegas.clock-dark #indices > .vegas-only > path { fill: #00baff; stroke: #ffffff; }
+    .clock-vegas.clock-dark #indices { filter: drop-shadow(0 0 3px #00baffcc); }
     .clock-vegas.clock-dark .vegas-fabulous { fill: #ffffff; }
     .clock-vegas.clock-dark .vegas-city { fill: #ff3298; }
     .clock-vegas.clock-dark #bezel > circle, .clock-vegas.clock-dark #bezel-type [fill="#ffffff"] { fill: #ffffff; }
@@ -748,7 +756,7 @@
   <p id="theme-menu-title" class="theme-menu-title">Clock theme</p>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="classic"><span class="theme-swatch" style="--bezel:#d7202c;--face:#fff;--markers:#28312b" aria-hidden="true"></span>Classic</button>
   <button class="theme-option" role="menuitemradio" aria-checked="true" tabindex="-1" data-theme="brazil"><span class="theme-swatch" style="--bezel:#229e45;--face:#214ca0;--markers:#ffdf00" aria-hidden="true"></span>Brazil</button>
-  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="vegas"><span class="theme-swatch" style="--bezel:#cf3d63;--face:#fff;--markers:#000000" aria-hidden="true"></span>Vegas</button>
+  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="vegas"><span class="theme-swatch" style="--bezel:#ed242b;--face:#fff8e9;--markers:#000000" aria-hidden="true"></span>Vegas</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="desert-pearl"><span class="theme-swatch" style="--bezel:#741a36;--face:#fff9ed;--markers:#c9aa79" aria-hidden="true"></span>Qatar</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="yas-marina"><span class="theme-swatch" style="--bezel:#08b5c5;--face:#122e49;--markers:#edffff" aria-hidden="true"></span>Abu Dhabi</button>
   <div role="group" aria-labelledby="team-theme-title">
@@ -968,6 +976,9 @@
       element(marks, i % 5 === 0 ? 'rect' : 'circle', i % 5 === 0 ?
         {x:296.4,y:95.4,width:7.2,height:15.6,fill:'url(#lume)',transform:rotation} :
         {cx:300,cy:103.2,r:5.4,fill:'url(#lume)',transform:rotation});
+      if (i % 5 === 0) {
+        element(marks, 'circle', {class:'vegas-marquee-bulb',cx:300,cy:103.2,r:5.4,fill:'#ffffff',transform:rotation});
+      }
     }
     if (i % 5 !== 0) element(bezel,'circle',{cx:300,cy:55.1,r:3.2,fill:'#ffffff',transform:rotation});
   }
