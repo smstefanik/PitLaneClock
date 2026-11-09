@@ -30,3 +30,8 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 - `assets/mclaren-wordmark.svg`: McLaren wordmark, sourced from https://commons.wikimedia.org/wiki/File:McLaren_wordmark.svg (McLaren Group Limited).
 - Both marks are inlined in the Papaya dial for crisp rendering and mode-specific colors. Wikimedia Commons marks these assets as PD-textlogo; trademark rights remain with McLaren.
 - Papaya pairs the approved Papaya Classic light concept with the Silverstone lume concept, including ice-blue lume and a papaya chapter-ring accent.
+
+## Scuderia clock branding
+- `assets/ferrari-shield.svg`: shield extracted from https://upload.wikimedia.org/wikipedia/en/d/df/Scuderia_Ferrari_HP_logo_24.svg (https://en.wikipedia.org/wiki/File:Scuderia_Ferrari_HP_logo_24.svg). Sponsor marks are outside the extracted shield group. Ferrari trademark rights remain with their owner.
+- `assets/ferrari-shield-lume.svg`: local mint-on-dark lume color variant using the same shield geometry.
+- Scuderia pairs the selected Rosso Corsa concept (red dial, yellow bezel with charcoal numerals, ivory markers, yellow seconds hand) with an oxblood night dial, mint lume, muted gold bezel with ivory lettering and yellow seconds hand. The dial wordmark uses the existing Formula1 font.
