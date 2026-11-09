@@ -121,7 +121,7 @@
     .clock-vegas .dial-track { fill: #f7bc27; }
     .clock-vegas #lume stop { stop-color: #ffffff; }
     .clock-vegas #marks > * { fill: #ffffff; }
-    .clock-vegas #indices { fill: #007eb5; stroke: #062858; }
+    .clock-vegas #indices { fill: #ffffff; stroke: #000000; }
     .clock-vegas #formula { display: none; }
     .clock-vegas .vegas-fabulous { fill: #07529b; }
     .clock-vegas .vegas-city { fill: #ed242b; }
@@ -149,8 +149,10 @@
     .clock-vegas.clock-dark #hour, .clock-vegas.clock-dark #minute { filter: none; }
     .clock-vegas.clock-dark #second path { fill: #ff009b; stroke: #ff009b; }
     .clock-vegas.clock-dark #second { filter: drop-shadow(0 0 2px #ff009b66); }
-    .clock-vegas.clock-dark #tag-heuer-logo .logo-light { opacity: 1; }
+    #tag-heuer-logo .logo-vegas-lume { opacity: 0; }
+    .clock-vegas.clock-dark #tag-heuer-logo .logo-light { opacity: 0; }
     .clock-vegas.clock-dark #tag-heuer-logo .logo-dark { opacity: 0; }
+    .clock-vegas.clock-dark #tag-heuer-logo .logo-vegas-lume { opacity: 1; filter: drop-shadow(0 0 1.3px #00baff55); }
     /* Qatar Desert Pearl: maroon ceramic, pearl ivory, and champagne metal. */
     .clock-desert-pearl #red stop { stop-color: #8a2343; }
     .clock-desert-pearl #red stop:nth-child(2) { stop-color: #741a36; }
@@ -671,6 +673,7 @@
       <image class="rbr-badge" href="assets/red-bull-racing-logo.svg" x="244" y="169" width="112" height="84" aria-hidden="true" pointer-events="none"/>
       <image class="logo-light" href="tag-heuer-logo.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-dark" href="tag-heuer-logo-dark.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
+      <image class="logo-vegas-lume" href="tag-heuer-logo-vegas-lume.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-pearl" href="tag-heuer-logo-pearl.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="logo-pearl-lume" href="tag-heuer-logo-pearl-lume.svg" x="254" y="176" width="92" height="79.58" aria-hidden="true" pointer-events="none"/>
       <g class="papaya-only" aria-hidden="true" pointer-events="none">
@@ -745,7 +748,7 @@
   <p id="theme-menu-title" class="theme-menu-title">Clock theme</p>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="classic"><span class="theme-swatch" style="--bezel:#d7202c;--face:#fff;--markers:#28312b" aria-hidden="true"></span>Classic</button>
   <button class="theme-option" role="menuitemradio" aria-checked="true" tabindex="-1" data-theme="brazil"><span class="theme-swatch" style="--bezel:#229e45;--face:#214ca0;--markers:#ffdf00" aria-hidden="true"></span>Brazil</button>
-  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="vegas"><span class="theme-swatch" style="--bezel:#cf3d63;--face:#fff;--markers:#007eb5" aria-hidden="true"></span>Vegas</button>
+  <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="vegas"><span class="theme-swatch" style="--bezel:#cf3d63;--face:#fff;--markers:#000000" aria-hidden="true"></span>Vegas</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="desert-pearl"><span class="theme-swatch" style="--bezel:#741a36;--face:#fff9ed;--markers:#c9aa79" aria-hidden="true"></span>Qatar</button>
   <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="yas-marina"><span class="theme-swatch" style="--bezel:#08b5c5;--face:#122e49;--markers:#edffff" aria-hidden="true"></span>Abu Dhabi</button>
   <div role="group" aria-labelledby="team-theme-title">
