@@ -515,6 +515,64 @@
     .clock-verstappen.clock-dark #second path { fill: #ffc27a; stroke: #ffc27a; }
     .clock-verstappen.clock-dark #second { filter: drop-shadow(0 0 2px #ff891966); }
     .clock-verstappen.clock-dark .hand-cap { fill: #131820; stroke: #775034; }
+    /* Piastri: Electric Papaya helmet graphics, with Midnight Cyan lume. */
+    .piastri-only { display: none; }
+    .clock-piastri .piastri-only { display: inline; }
+    .clock-piastri #formula, .clock-piastri #tag-heuer-logo > image[class] { display: none; }
+    .clock-piastri #red stop { stop-color: #00c6ed; }
+    .clock-piastri #red stop:nth-child(2) { stop-color: #00b9e5; }
+    .clock-piastri #red stop:nth-child(3) { stop-color: #008bb9; }
+    .clock-piastri #bezel > path:first-child { stroke: #267d96; }
+    .clock-piastri #facet stop { stop-color: #00364c; }
+    .clock-piastri #facet-light stop { stop-color: #b5f6ff; }
+    .clock-piastri #dial stop, .clock-piastri #dial-center stop { stop-color: #11151a; }
+    .clock-piastri .dial-track { fill: #070d13; }
+    .clock-piastri #lume stop { stop-color: #f4faeb; }
+    .clock-piastri #lume stop:last-child { stop-color: #e3eedc; }
+    .clock-piastri #indices { stroke: #323e45; }
+    .clock-piastri #indices [stroke="#ffffff"] { stroke: #a4afb5; }
+    .clock-piastri #bezel > circle, .clock-piastri #bezel-type [fill="#ffffff"] { fill: #061b28; }
+    .clock-piastri #bezel-theme-toggle > path.standard-bezel-marker { fill: #f3faf4; }
+    .clock-piastri #bezel-triangle-dot { fill: #082330; }
+    .clock-piastri #hour > path:first-child, .clock-piastri #minute > path:first-child { fill: #b8c3cb; stroke: #29343d; }
+    .clock-piastri #hour circle, .clock-piastri #hour path[fill="none"] { stroke: #3b4950; }
+    .clock-piastri #second path { fill: #ff5015; stroke: #ed410d; }
+    .clock-piastri .hand-cap { fill: #13191d; stroke: #829098; }
+    .piastri-ring { fill: none; stroke: #00c5ed; stroke-width: 2; }
+    .piastri-blue { fill: #163e78; }
+    .piastri-orange { fill: #ff5817; }
+    .piastri-yellow { fill: #eeff00; }
+    .piastri-pinstripe { fill: none; stroke: #00c5ed; stroke-width: 2.2; stroke-linejoin: round; }
+    .piastri-number { fill: #fff; font: italic 500 29px Formula1, sans-serif; }
+    .clock-piastri.clock-dark #red stop { stop-color: #082535; }
+    .clock-piastri.clock-dark #red stop:nth-child(2) { stop-color: #0b3041; }
+    .clock-piastri.clock-dark #red stop:nth-child(3) { stop-color: #041724; }
+    .clock-piastri.clock-dark #bezel > path:first-child { stroke: #174458; }
+    .clock-piastri.clock-dark #facet stop { stop-color: #010811; }
+    .clock-piastri.clock-dark #facet-light stop { stop-color: #24718b; }
+    .clock-piastri.clock-dark #dial stop, .clock-piastri.clock-dark #dial-center stop { stop-color: #040a10; }
+    .clock-piastri.clock-dark .dial-track { fill: #06131d; }
+    .clock-piastri.clock-dark #lume stop { stop-color: #c0faff; }
+    .clock-piastri.clock-dark #lume stop:last-child { stop-color: #86e8fa; }
+    .clock-piastri.clock-dark #indices { stroke: #1c404e; }
+    .clock-piastri.clock-dark #indices [stroke="#ffffff"] { stroke: #08131c; }
+    .clock-piastri.clock-dark #bezel > circle, .clock-piastri.clock-dark #bezel-type [fill="#ffffff"] { fill: #92eafa; }
+    .clock-piastri.clock-dark #bezel-theme-toggle > path.standard-bezel-marker { fill: #c0faff; }
+    .clock-piastri.clock-dark #bezel-triangle-dot { fill: #082535; }
+    .clock-piastri.clock-dark #marks, .clock-piastri.clock-dark #indices, .clock-piastri.clock-dark #hour, .clock-piastri.clock-dark #minute { filter: drop-shadow(0 0 3px #67ddfa77); }
+    .clock-piastri.clock-dark #hour > path:first-child, .clock-piastri.clock-dark #minute > path:first-child { fill: #19313c; stroke: #46717f; }
+    .clock-piastri.clock-dark #hour circle, .clock-piastri.clock-dark #hour path[fill="none"] { stroke: #1b3743; }
+    .clock-piastri.clock-dark #second path { fill: #ff853e; stroke: #ff853e; }
+    .clock-piastri.clock-dark #second { filter: drop-shadow(0 0 2px #ff691a66); }
+    .clock-piastri.clock-dark .hand-cap { fill: #08141e; stroke: #355361; }
+    .clock-piastri.clock-dark .piastri-blue { fill: #0b1c30; }
+    .clock-piastri.clock-dark .piastri-orange { fill: #622a18; }
+    .clock-piastri.clock-dark .piastri-yellow { fill: #a0b62d; }
+    .clock-piastri.clock-dark .piastri-pinstripe { stroke: #1e7b95; }
+    .clock-piastri.clock-dark .piastri-ring { stroke: #31c7e3; filter: drop-shadow(0 0 2px #18b9d855); }
+    .clock-piastri.clock-dark .piastri-flag { opacity: .4; }
+    .clock-piastri.clock-dark .piastri-number { fill: #9ceefa; }
+    .clock-piastri.clock-dark .piastri-logo { opacity: .8; filter: drop-shadow(0 0 1.2px #00c5ed55); }
     .theme-menu { position: fixed; z-index: 10; width: min(264px, calc(100vw - 24px)); padding: 8px; border: 1px solid #38383d; border-radius: 14px; background: #171719; box-shadow: 0 16px 48px #0009; }
     .theme-menu[hidden] { display: none; }
     .theme-menu-title { margin: 8px 10px 10px; color: #99999f; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -549,6 +607,9 @@
   </section>
   <svg class="clock-brazil" viewBox="0 0 600 600" role="group" aria-label="Analog clock">
     <defs>
+      <clipPath id="piastri-dial-clip"><circle cx="300" cy="300" r="186.6"/></clipPath>
+      <clipPath id="piastri-flag-clip"><path d="M151 365 L484 340 L476 399 L151 426 Z"/></clipPath>
+      <pattern id="piastri-hatching" width="13" height="13" patternUnits="userSpaceOnUse" patternTransform="rotate(54)"><rect class="piastri-blue" width="5" height="13"/></pattern>
       <filter id="hand-shadow" filterUnits="userSpaceOnUse" x="65" y="65" width="470" height="470" color-interpolation-filters="sRGB">
         <feDropShadow dx="1.5" dy="3" stdDeviation="2" flood-color="#141720" flood-opacity=".32"/>
       </filter>
@@ -581,10 +642,27 @@
     <g class="verstappen-only verstappen-art" aria-hidden="true" pointer-events="none">
       <image class="verstappen-lion" href="assets/verstappen-lion.png" x="113.4" y="104.6" width="373.2" height="390.8" preserveAspectRatio="xMidYMid meet"/>
     </g>
+    <g class="piastri-only" aria-hidden="true" pointer-events="none">
+      <circle class="piastri-ring" cx="300" cy="300" r="232"/>
+      <g clip-path="url(#piastri-dial-clip)">
+        <g class="piastri-graphics">
+          <path fill="url(#piastri-hatching)" d="M103 105 H300 L225 171 L112 203 Z M200 466 L482 399 L493 499 H200 Z"/>
+          <path class="piastri-yellow" d="M100 190 L239 171 L174 202 L105 249 Z M410 279 L444 254 L506 246 L507 265 L446 273 Z M329 452 L375 418 L500 405 L499 423 L378 433 Z"/>
+          <path class="piastri-orange" d="M101 269 L237 187 L345 176 L380 143 L444 172 L251 191 L111 285 Z M99 361 L179 314 L400 303 L442 265 L508 257 L503 319 L204 344 L157 383 L101 397 Z M151 430 L258 420 L187 451 Z"/>
+          <path class="piastri-pinstripe" d="M105 184 L238 167 L344 173 M106 266 L237 184 M103 356 L178 309 L400 298 L442 259 L505 251 M159 364 L203 339 L505 315 M153 429 L477 402 M334 456 L378 437 L491 426"/>
+        </g>
+        <g clip-path="url(#piastri-flag-clip)">
+          <image class="piastri-flag" href="assets/piastri-australian-flag.svg" x="151" y="352" width="333" height="65" preserveAspectRatio="none" transform="rotate(-4.5 300 384)"/>
+        </g>
+        <path class="piastri-pinstripe" d="M151 365 L484 340 M151 426 L476 399"/>
+        <text class="piastri-number" x="300" y="443" text-anchor="middle">81</text>
+      </g>
+    </g>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
     <g id="tag-heuer-logo" role="button" tabindex="0" aria-label="TAG Heuer — Heritage lume dark face" aria-pressed="false">
+      <g class="piastri-only" aria-hidden="true" pointer-events="none"><image class="piastri-logo" href="assets/piastri-op.svg" x="240" y="184" width="120" height="48"/></g>
       <g class="silver-arrow-only silver-arrow-badge" aria-hidden="true" pointer-events="none">
         <circle class="silver-arrow-star-ring" cx="300" cy="204" r="25"/>
         <path d="M300 179 L303.4 201.9 L321.65 216.5 L300 208 L278.35 216.5 L296.6 201.9 Z"/>
@@ -679,6 +757,7 @@
   </div>
   <div role="group" aria-labelledby="driver-theme-title">
     <p id="driver-theme-title" class="theme-menu-title theme-section-title">DRIVER</p>
+    <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="piastri"><span class="theme-swatch" style="--bezel:#00bfe9;--face:#11151a;--markers:#ff5817" aria-hidden="true"></span>Piastri</button>
     <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="verstappen"><span class="theme-swatch" style="--bezel:#f66b08;--face:#101d34;--markers:#ff002e" aria-hidden="true"></span>Verstappen</button>
   </div>
 </div>
@@ -988,6 +1067,7 @@
     'scuderia': { brazil: false, label: 'Scuderia' },
     'rbr': { brazil: false, label: 'RBR' },
     'silver-arrow': { brazil: false, label: 'Silver Arrow' },
+    'piastri': { brazil: false, label: 'Piastri' },
     'verstappen': { brazil: false, label: 'Verstappen' },
     'classic': { brazil: false, label: 'Classic' }
   };
@@ -1018,10 +1098,11 @@
     clock.classList.toggle('clock-rbr', id === 'rbr');
     clock.classList.toggle('clock-silver-arrow', id === 'silver-arrow');
     clock.classList.toggle('clock-verstappen', id === 'verstappen');
+    clock.classList.toggle('clock-piastri', id === 'piastri');
     selectedTheme = id;
     var dark = clock.classList.contains('clock-dark');
     logo.setAttribute('aria-pressed', String(dark));
-    logo.setAttribute('aria-label', (id === 'verstappen' ? 'Max Verstappen lion' : id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : id === 'rbr' ? 'Red Bull Racing' : id === 'silver-arrow' ? 'Mercedes' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
+    logo.setAttribute('aria-label', (id === 'piastri' ? 'Oscar Piastri OP logo' : id === 'verstappen' ? 'Max Verstappen lion' : id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : id === 'rbr' ? 'Red Bull Racing' : id === 'silver-arrow' ? 'Mercedes' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
     themeToggle.setAttribute('aria-label', 'Clock themes — ' + theme.label);
     themeOptions.forEach(function (option) {
       option.setAttribute('aria-checked', String(option.dataset.theme === id));

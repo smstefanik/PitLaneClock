@@ -53,3 +53,10 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 - `assets/verstappen-lion.png`: original transparent MV lion artwork supplied by the user. The image pixels and proportions are preserved, including the integrated M and V; lume mode dims the original red artwork without redrawing the logo. Trademark rights remain with their owner.
 - Day mode uses the accepted navy face, orange bezel, red full-dial lion, ivory hands and markers, and orange seconds hand. No tricolor stripes or driver number.
 - Lume mode pairs a dark navy dial and dark blue bezel with orange hands, indices and bezel numerals. The lion retains its original red at 38% opacity, without a glow halo, to keep the time readable. Select Verstappen in the Driver section; click the lion or use the existing keyboard toggle to switch lume.
+
+## Piastri clock theme
+- Electric Papaya day mode combines the approved cyan bezel with the multicolor helmet dial: papaya orange ribbons, fluorescent yellow accents, cyan outlines, black and blue geometric details, Australian flag band and 81.
+- `assets/piastri-op.svg`: vector contours traced from the user's supplied white/cyan OP logo screenshot, preserving its silhouette and negative space. Oscar Piastri trademark rights remain with their owner.
+- `assets/piastri-australian-flag.svg`: locally drawn panoramic Australian flag artwork for the slanted dial band, with Union Jack, seven-point Commonwealth star, four seven-point Southern Cross stars and five-point Epsilon Crucis.
+- Helmet graphics are native SVG paths clipped to the existing dial; hands, markers and bezel lettering remain live vector geometry.
+- Midnight Cyan lume uses a dark navy bezel, ice-blue hands, indices and numerals, a cyan chapter ring, orange seconds hand and subdued colored helmet graphics/flag. Choose Piastri under Driver in the theme menu (debug controls enabled); click the OP logo or press Enter/Space while focused to toggle lume.
