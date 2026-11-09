@@ -472,6 +472,49 @@
     .clock-silver-arrow.clock-dark .silver-arrow-ring { stroke: #00d2c5; filter: drop-shadow(0 0 1.5px #00d2c566); }
     .clock-silver-arrow.clock-dark .silver-arrow-badge { fill: #cce7e2; filter: drop-shadow(0 0 1px #a6eddd44); }
     .clock-silver-arrow.clock-dark .silver-arrow-star-ring { stroke: #cce7e2; }
+    /* Verstappen: the supplied MV lion is preserved as original artwork. */
+    .verstappen-only { display: none; }
+    .clock-verstappen .verstappen-only { display: inline; }
+    .clock-verstappen #formula, .clock-verstappen #tag-heuer-logo > image[class] { display: none; }
+    .clock-verstappen #red stop { stop-color: #f66b08; }
+    .clock-verstappen #red stop:nth-child(2) { stop-color: #f8750c; }
+    .clock-verstappen #red stop:nth-child(3) { stop-color: #de5405; }
+    .clock-verstappen #bezel > path:first-child { stroke: #b34305; }
+    .clock-verstappen #facet stop { stop-color: #8c3004; }
+    .clock-verstappen #facet-light stop { stop-color: #ffbd75; }
+    .clock-verstappen #dial stop, .clock-verstappen #dial-center stop { stop-color: #101d34; }
+    .clock-verstappen .dial-track { fill: #142b43; }
+    .clock-verstappen #lume stop { stop-color: #fffdf4; }
+    .clock-verstappen #indices { stroke: #122335; }
+    .clock-verstappen #indices [stroke="#ffffff"] { stroke: #101d34; }
+    .clock-verstappen #bezel > circle, .clock-verstappen #bezel-type [fill="#ffffff"] { fill: #ffffff; }
+    .clock-verstappen #bezel-triangle-dot { fill: #f66b08; }
+    .clock-verstappen #hour > path:first-child, .clock-verstappen #minute > path:first-child { fill: #fffdf4; stroke: #122335; }
+    .clock-verstappen #hour circle, .clock-verstappen #hour path[fill="none"] { stroke: #122335; }
+    .clock-verstappen #second path { fill: #f66b08; stroke: #f66b08; }
+    .clock-verstappen .hand-cap { fill: #14202c; stroke: #64717a; }
+    /* Orange lume with a subdued red lion behind the brighter time markers. */
+    .clock-verstappen.clock-dark #dial stop, .clock-verstappen.clock-dark #dial-center stop { stop-color: #050c18; }
+    .clock-verstappen.clock-dark .dial-track { fill: #0b1522; }
+    .clock-verstappen.clock-dark #red stop { stop-color: #102343; }
+    .clock-verstappen.clock-dark #red stop:nth-child(2) { stop-color: #142e52; }
+    .clock-verstappen.clock-dark #red stop:nth-child(3) { stop-color: #09162d; }
+    .clock-verstappen.clock-dark #bezel > path:first-child { stroke: #294368; }
+    .clock-verstappen.clock-dark #facet stop { stop-color: #030c1c; }
+    .clock-verstappen.clock-dark #facet-light stop { stop-color: #41648e; }
+    .clock-verstappen.clock-dark #lume stop { stop-color: #ffb35b; }
+    .clock-verstappen.clock-dark #lume stop:last-child { stop-color: #ff781c; }
+    .clock-verstappen.clock-dark #indices { stroke: #3d271d; }
+    .clock-verstappen.clock-dark #indices [stroke="#ffffff"] { stroke: #050c18; }
+    .clock-verstappen.clock-dark #bezel > circle, .clock-verstappen.clock-dark #bezel-type [fill="#ffffff"] { fill: #ff942e; filter: drop-shadow(0 0 2px #ff750877); }
+    .clock-verstappen.clock-dark #bezel-triangle-dot { fill: #102343; filter: none; }
+    .clock-verstappen.clock-dark .verstappen-art { opacity: .38; filter: none; }
+    .clock-verstappen.clock-dark #hour > path:first-child, .clock-verstappen.clock-dark #minute > path:first-child { fill: #ff9a38; stroke: #3d271d; }
+    .clock-verstappen.clock-dark #hour circle, .clock-verstappen.clock-dark #hour path[fill="none"] { stroke: #3d271d; }
+    .clock-verstappen.clock-dark #marks, .clock-verstappen.clock-dark #indices, .clock-verstappen.clock-dark #hour, .clock-verstappen.clock-dark #minute { filter: drop-shadow(0 0 4px #ff7a1488); }
+    .clock-verstappen.clock-dark #second path { fill: #ffc27a; stroke: #ffc27a; }
+    .clock-verstappen.clock-dark #second { filter: drop-shadow(0 0 2px #ff891966); }
+    .clock-verstappen.clock-dark .hand-cap { fill: #131820; stroke: #775034; }
     .theme-menu { position: fixed; z-index: 10; width: min(264px, calc(100vw - 24px)); padding: 8px; border: 1px solid #38383d; border-radius: 14px; background: #171719; box-shadow: 0 16px 48px #0009; }
     .theme-menu[hidden] { display: none; }
     .theme-menu-title { margin: 8px 10px 10px; color: #99999f; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -535,6 +578,9 @@
     <circle class="scuderia-only scuderia-ring" cx="300" cy="300" r="231"/>
     <circle class="rbr-only rbr-ring" cx="300" cy="300" r="233"/>
     <circle class="silver-arrow-only silver-arrow-ring" cx="300" cy="300" r="233"/>
+    <g class="verstappen-only verstappen-art" aria-hidden="true" pointer-events="none">
+      <image class="verstappen-lion" href="assets/verstappen-lion.png" x="113.4" y="104.6" width="373.2" height="390.8" preserveAspectRatio="xMidYMid meet"/>
+    </g>
     <g id="marks"></g>
     <g id="indices" fill="url(#lume)" stroke="#28312b" stroke-width="2.8"></g>
     <g id="bezel-type" fill="none" stroke="#ffffff" stroke-width="5.8" stroke-linecap="square" stroke-linejoin="round"></g>
@@ -555,6 +601,7 @@
       </g>
       <image class="scuderia-only scuderia-badge-day" href="assets/ferrari-shield.svg" x="270.7" y="176" width="58.6" height="79.58" aria-hidden="true" pointer-events="none"/>
       <image class="scuderia-only scuderia-badge-night" href="assets/ferrari-shield-lume.svg" x="270.7" y="176" width="58.6" height="79.58" aria-hidden="true" pointer-events="none"/>
+      <rect class="verstappen-only" x="113.4" y="104.6" width="373.2" height="390.8" fill="transparent" pointer-events="all"/>
       <rect x="254" y="176" width="92" height="79.58" fill="transparent" pointer-events="all"/>
     </g>
     <g id="formula" fill="none" stroke="#252d27" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-label="Formula 1"></g>
@@ -629,6 +676,10 @@
     <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="scuderia"><span class="theme-swatch" style="--bezel:#ffcf00;--face:#d51119;--markers:#fffef5" aria-hidden="true"></span>Scuderia</button>
     <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="rbr"><span class="theme-swatch" style="--bezel:#fcd700;--face:#101e38;--markers:#f5fbff" aria-hidden="true"></span>RBR</button>
     <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="silver-arrow"><span class="theme-swatch" style="--bezel:#00b9b3;--face:#101719;--markers:#e3eeee" aria-hidden="true"></span>Silver Arrow</button>
+  </div>
+  <div role="group" aria-labelledby="driver-theme-title">
+    <p id="driver-theme-title" class="theme-menu-title theme-section-title">DRIVER</p>
+    <button class="theme-option" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme="verstappen"><span class="theme-swatch" style="--bezel:#f66b08;--face:#101d34;--markers:#ff002e" aria-hidden="true"></span>Verstappen</button>
   </div>
 </div>
 <script src="races.js"></script>
@@ -708,8 +759,10 @@
   function toggleDebugControls() {
     debugPanel.hidden = !debugPanel.hidden;
     document.getElementById('bezel-debug-toggle').setAttribute('aria-expanded', String(!debugPanel.hidden));
-    if (debugPanel.hidden && activeRace) selectTheme(activeRace.defaultTheme);
     updateThemeVisibility();
+    if (debugPanel.hidden && activeRace && themeOptions.some(function (option) { return option.dataset.theme === selectedTheme && option.hidden; })) {
+      selectTheme(activeRace.defaultTheme);
+    }
   }
   logo.addEventListener('click', toggleClockTheme);
   logo.addEventListener('keydown', function (event) {
@@ -935,6 +988,7 @@
     'scuderia': { brazil: false, label: 'Scuderia' },
     'rbr': { brazil: false, label: 'RBR' },
     'silver-arrow': { brazil: false, label: 'Silver Arrow' },
+    'verstappen': { brazil: false, label: 'Verstappen' },
     'classic': { brazil: false, label: 'Classic' }
   };
   function applyRaceTheme(race) {
@@ -943,7 +997,8 @@
   }
   function updateThemeVisibility() {
     themeOptions.forEach(function (option) {
-      option.hidden = debugPanel.hidden && (!activeRace || option.dataset.theme !== activeRace.defaultTheme);
+      var alwaysAvailable = option.dataset.theme === 'classic' || option.closest('[aria-labelledby="team-theme-title"], [aria-labelledby="driver-theme-title"]');
+      option.hidden = debugPanel.hidden && !alwaysAvailable && (!activeRace || option.dataset.theme !== activeRace.defaultTheme);
     });
     themeMenu.querySelectorAll('[role="group"]').forEach(function (group) {
       group.hidden = !Array.from(group.querySelectorAll('[data-theme]')).some(function (option) { return !option.hidden; });
@@ -962,10 +1017,11 @@
     clock.classList.toggle('clock-scuderia', id === 'scuderia');
     clock.classList.toggle('clock-rbr', id === 'rbr');
     clock.classList.toggle('clock-silver-arrow', id === 'silver-arrow');
+    clock.classList.toggle('clock-verstappen', id === 'verstappen');
     selectedTheme = id;
     var dark = clock.classList.contains('clock-dark');
     logo.setAttribute('aria-pressed', String(dark));
-    logo.setAttribute('aria-label', (id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : id === 'rbr' ? 'Red Bull Racing' : id === 'silver-arrow' ? 'Mercedes' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
+    logo.setAttribute('aria-label', (id === 'verstappen' ? 'Max Verstappen lion' : id === 'papaya' ? 'McLaren' : id === 'scuderia' ? 'Ferrari' : id === 'rbr' ? 'Red Bull Racing' : id === 'silver-arrow' ? 'Mercedes' : 'TAG Heuer') + ' — toggle ' + theme.label + ' Lume mode');
     themeToggle.setAttribute('aria-label', 'Clock themes — ' + theme.label);
     themeOptions.forEach(function (option) {
       option.setAttribute('aria-checked', String(option.dataset.theme === id));

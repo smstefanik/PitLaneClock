@@ -48,3 +48,8 @@ Wikimedia Commons marks this asset as PD-textlogo; trademark rights remain with 
 - Pairs the selected Turquoise Apex day mockup with Midnight Petronas inspired lume: turquoise bezel, black dial, silver marker surrounds and turquoise seconds hand by day; black bezel, pale aqua lume, turquoise chapter ring and minute accents at night.
 - Mercedes star is drawn inline with SVG geometry, with the wordmark set in the existing Formula1 font. Mercedes trademark rights remain with their owner.
 - Theme is listed as Silver Arrow in the Team menu and uses the existing logo click/keyboard lume toggle.
+
+## Verstappen clock theme
+- `assets/verstappen-lion.png`: original transparent MV lion artwork supplied by the user. The image pixels and proportions are preserved, including the integrated M and V; lume mode dims the original red artwork without redrawing the logo. Trademark rights remain with their owner.
+- Day mode uses the accepted navy face, orange bezel, red full-dial lion, ivory hands and markers, and orange seconds hand. No tricolor stripes or driver number.
+- Lume mode pairs a dark navy dial and dark blue bezel with orange hands, indices and bezel numerals. The lion retains its original red at 38% opacity, without a glow halo, to keep the time readable. Select Verstappen in the Driver section; click the lion or use the existing keyboard toggle to switch lume.
