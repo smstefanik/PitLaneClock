@@ -351,8 +351,8 @@
     .clock-scuderia.clock-dark #hour > path:first-child, .clock-scuderia.clock-dark #minute > path:first-child { fill: #14201b; stroke: #3e554a; }
     .clock-scuderia.clock-dark #hour circle, .clock-scuderia.clock-dark #hour path[fill="none"] { stroke: #14201b; }
     .clock-scuderia.clock-dark #marks, .clock-scuderia.clock-dark #indices, .clock-scuderia.clock-dark #hour, .clock-scuderia.clock-dark #minute { filter: drop-shadow(0 0 3.5px #9ff7bd77); }
-    .clock-scuderia.clock-dark #second path { fill: #ffe87a; stroke: #ffe87a; }
-    .clock-scuderia.clock-dark #second { filter: drop-shadow(0 0 2px #ffdf3355); }
+    .clock-scuderia.clock-dark #second path { fill: #ff394b; stroke: #ff394b; }
+    .clock-scuderia.clock-dark #second { filter: drop-shadow(0 0 2px #ff394b55); }
     .clock-scuderia.clock-dark .hand-cap { fill: #14201b; stroke: #5b7363; }
     .clock-scuderia.clock-dark .scuderia-ring { stroke: #8b242d; filter: drop-shadow(0 0 1px #ca263a33); }
     .clock-scuderia.clock-dark .scuderia-wordmark { fill: #a7c9b6; }
@@ -839,8 +839,8 @@
     debugPanel.hidden = !debugPanel.hidden;
     document.getElementById('bezel-debug-toggle').setAttribute('aria-expanded', String(!debugPanel.hidden));
     updateThemeVisibility();
-    if (debugPanel.hidden && activeRace && themeOptions.some(function (option) { return option.dataset.theme === selectedTheme && option.hidden; })) {
-      selectTheme(activeRace.defaultTheme);
+    if (debugPanel.hidden && themeOptions.some(function (option) { return option.dataset.theme === selectedTheme && option.hidden; })) {
+      selectTheme(activeRace ? activeRace.defaultTheme : 'classic');
     }
   }
   logo.addEventListener('click', toggleClockTheme);
@@ -1077,8 +1077,9 @@
   }
   function updateThemeVisibility() {
     themeOptions.forEach(function (option) {
-      var alwaysAvailable = option.dataset.theme === 'classic' || option.closest('[aria-labelledby="team-theme-title"], [aria-labelledby="driver-theme-title"]');
-      option.hidden = debugPanel.hidden && !alwaysAvailable && (!activeRace || option.dataset.theme !== activeRace.defaultTheme);
+      var debugOnly = !!option.closest('[aria-labelledby="driver-theme-title"]');
+      var alwaysAvailable = option.dataset.theme === 'classic' || option.closest('[aria-labelledby="team-theme-title"]');
+      option.hidden = debugPanel.hidden && (debugOnly || (!alwaysAvailable && (!activeRace || option.dataset.theme !== activeRace.defaultTheme)));
     });
     themeMenu.querySelectorAll('[role="group"]').forEach(function (group) {
       group.hidden = !Array.from(group.querySelectorAll('[data-theme]')).some(function (option) { return !option.hidden; });
